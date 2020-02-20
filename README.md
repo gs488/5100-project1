@@ -4,4 +4,4 @@ INFO3300 Project 1 by Zhongkai Liu (zl777), Grace Song (gs488), Jerry Xu (lx46)
 
 -   [x] repo cloned and pushed successfully by Zhongkai
 -   [x] repo cloned and pushed successfully by Grace
--   [ ] repo cloned and pushed successfully by Jerry
+-   [x] repo cloned and pushed successfully by Jerry
