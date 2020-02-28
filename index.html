@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8"/>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <title>Project 1</title>
+</head>
+<body>
+  <h3>Grace Song gs488, [ADD NAME & NETID], [ADD NAME & NETID]</h3>
+    <div id="salaryVis">
+        <svg id="salaryChart" width="800" height="500"></svg>
+    </div>
+    <script>
+        // create svg element
+        const svg = d3.select("svg#salaryChart");
+        const width = svg.attr("width");
+        const height = svg.attr("height");
+        const margins = {"top":10, "right":10, "bottom":10, "left":10};
+        const chartWidth = width - margins.right - margins.left;
+        const chartHeight = height - margins.top - margins.bottom;
+
+        let chart = svg.append("g").attr("id", "points")
+                                    .attr("transform", "translate("+margins.left+","+margins.top+")");
+
+        // retrieve JSON file
+        d3.json("../salaries.json").then((x) => {
+
+        });
+
+        // major
+        // classyear
+        // degree
+        // salary
+        
+    </script>
+  </body>
