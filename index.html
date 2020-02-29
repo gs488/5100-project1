@@ -1,36 +1,327 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <head>
-  <meta charset="UTF-8"/>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <title>Project 1</title>
+    <meta charset="UTF-8" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <title>Project 1</title>
 </head>
 <body>
-  <h3>Grace Song gs488, [ADD NAME & NETID], [ADD NAME & NETID]</h3>
-    <div id="salaryVis">
-        <svg id="salaryChart" width="800" height="500"></svg>
-    </div>
+    <h3>
+        INFO 3300 Project 1 <br />
+        Grace Song gs488, Zhongkai Liu zl777, [ADD NAME & NETID]
+    </h3>
+
+    <div id="chartDiv"></div>
     <script>
-        // create svg element
-        const svg = d3.select("svg#salaryChart");
-        const width = svg.attr("width");
-        const height = svg.attr("height");
-        const margins = {"top":10, "right":10, "bottom":10, "left":10};
+        // svg setup
+        const width = 800;
+        const height = 500;
+        const margins = { top: 10, right: 50, bottom: 30, left: 50 };
         const chartWidth = width - margins.right - margins.left;
         const chartHeight = height - margins.top - margins.bottom;
+        const barWidth = 20;
+        const barPadding = 5;
 
-        let chart = svg.append("g").attr("id", "points")
-                                    .attr("transform", "translate("+margins.left+","+margins.top+")");
+        // create svgs and charts
+        const chartDiv = d3.select("#chartDiv");
+
+        chartDiv
+            .append("h4")
+            .text("Average Salary IS Bachelors vs. IS Masters");
+        // .style("text-align", "center");
+
+        const svg1 = chartDiv
+            .append("svg")
+            .attr("id", "svg1")
+            .attr("width", String(width))
+            .attr("height", String(height));
+        const chart1 = svg1
+            .append("g")
+            .attr("id", "chart1")
+            .attr("class", "chart")
+            .attr(
+                "transform",
+                "translate(" + margins.left + "," + margins.top + ")"
+            );
+
+        const svg2 = chartDiv
+            .append("svg")
+            .attr("id", "svg2")
+            .attr("width", String(width))
+            .attr("height", String(height));
+
+        const chart2 = svg2
+            .append("g")
+            .attr("class", "chart")
+            .attr(
+                "transform",
+                "translate(" + margins.left + "," + margins.top + ")"
+            );
+
+        const svg3 = chartDiv
+            .append("svg")
+            .attr("id", "svg3")
+            .attr("width", String(width))
+            .attr("height", String(height));
+
+        const chart3 = svg3
+            .append("g")
+            .attr("class", "chart")
+            .attr(
+                "transform",
+                "translate(" + margins.left + "," + margins.top + ")"
+            );
+
+        const svg4 = chartDiv
+            .append("svg")
+            .attr("id", "svg4")
+            .attr("width", String(width))
+            .attr("height", String(height));
+
+        const chart4 = svg4
+            .append("g")
+            .attr("class", "chart")
+            .attr(
+                "transform",
+                "translate(" + margins.left + "," + margins.top + ")"
+            );
 
         // retrieve JSON file
-        d3.json("../salaries.json").then((x) => {
+        d3.json("../salaries.json").then(data => {
+            // filter data into different groups
+            const dataIS = data.filter(d => {
+                return d["major"] === "IS";
+            });
 
+            const dataCS = data.filter(d => {
+                return d["major"] === "CS";
+            });
+
+            const dataBachelors = data.filter(d => {
+                return d["degree"] === "Bachelors";
+            });
+
+            const dataMasters = data.filter(d => {
+                return d["degree"] === "Masters";
+            });
+
+            // max of salary of different groups
+            const salaryMax = d3.max(data, d => {
+                return d["salary"];
+            });
+
+            const salaryMaxIS = d3.max(dataIS, d => {
+                return d["salary"];
+            });
+
+            const salaryMaxCS = d3.max(dataCS, d => {
+                return d["salary"];
+            });
+
+            const salaryMaxBachelors = d3.max(dataBachelors, d => {
+                return d["salary"];
+            });
+
+            const salaryMaxMasters = d3.max(dataMasters, d => {
+                return d["salary"];
+            });
+
+            // scales
+            const yearScale = d3
+                .scaleTime()
+                .domain([new Date(2011, 6, 1), new Date(2018, 6, 1)])
+                .range([0, chartWidth]);
+
+            const salaryScaleIS = d3
+                .scaleLinear()
+                .domain([60000, 90000])
+                .range([chartHeight, 0]);
+
+            const salaryScaleCS = d3
+                .scaleLinear()
+                .domain([0, salaryMaxCS])
+                .range([chartHeight, 0]);
+
+            const salaryScaleBachelors = d3
+                .scaleLinear()
+                .domain([0, salaryMaxBachelors])
+                .range([chartHeight, 0]);
+
+            const salaryScaleMasters = d3
+                .scaleLinear()
+                .domain([0, salaryMaxMasters])
+                .range([chartHeight, 0]);
+
+            // Axises
+            const yearAxis = d3
+                .axisBottom(yearScale)
+                .tickFormat(d3.timeFormat("%Y"))
+                .tickSize(0)
+                .tickPadding(10);
+
+            const salaryAxisIS = d3.axisLeft(salaryScaleIS).ticks(6);
+
+            const salaryAxisCS = d3.axisLeft(salaryScaleCS);
+
+            const salaryAxisBachelors = d3.axisLeft(salaryScaleBachelors);
+
+            const salaryAxisMasters = d3.axisLeft(salaryScaleMasters);
+
+            // salary text on bar
+            let salaryText = svg1
+                .append("text")
+                .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                )
+                .attr("id", "salary_text")
+                .attr("text-anchor", "middle")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 0);
+
+            // ------ Chart 1, IS Bachelors vs. IS Masters ----
+            // append axises
+            svg1.append("g")
+                .attr("class", "x axis")
+                .attr(
+                    "transform",
+                    "translate(" +
+                        margins.left +
+                        ", " +
+                        (margins.top + chartHeight) +
+                        ")"
+                )
+                .call(yearAxis);
+
+            svg1.append("g")
+                .attr("class", "y axis")
+                .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                )
+                .call(salaryAxisIS);
+
+            // draw Chart 1
+            dataIS.forEach((d, i) => {
+                let x = yearScale(new Date(d["classyear"], 0, 1));
+                let fill = "";
+                if (d["degree"] === "Bachelors") {
+                    x -= barWidth + barPadding / 2;
+                    fill = "steelblue";
+                } else {
+                    x += barPadding / 2;
+                    fill = "orange";
+                }
+                let y = salaryScaleIS(d["salary"]);
+
+                let bar = chart1
+                    .append("rect")
+                    .attr("width", barWidth)
+                    .attr("height", chartHeight - y)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("year", d["classyear"])
+                    .attr("major", d["major"])
+                    .attr("degree", d["degree"])
+                    .style("fill", fill)
+                    .style("stroke", "none");
+
+                // Event listeners
+                bar.on("mouseover", function() {
+                    let currentRect = d3.select(this);
+                    d3.selectAll("#svg1 rect").each(function() {
+                        let rect = d3.select(this);
+                        if (
+                            rect.attr("year") != currentRect.attr("year") ||
+                            rect.attr("degree") != currentRect.attr("degree")
+                        ) {
+                            rect.transition()
+                                .duration(200)
+                                .attr("opacity", 0.5);
+                        }
+                    });
+
+                    salaryText
+                        .attr("x", x + barWidth / 2)
+                        .attr("y", y - 12)
+                        .text(d["salary"]);
+                });
+
+                bar.on("mouseout", function() {
+                    d3.selectAll("#svg1 rect")
+                        .transition()
+                        .duration(200)
+                        .attr("opacity", 1);
+                    salaryText
+                        .attr("x", 0)
+                        .attr("y", 0)
+                        .text("");
+                });
+            });
+
+            // add legend for char 1
+            let legend = svg1
+                .append("g")
+                .attr("id", "legend1")
+                .attr("class", "legend")
+                .attr(
+                    "transform",
+                    "translate(" + (chartWidth + 30) + "," + margins.top + ")"
+                );
+
+            legend
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 0)
+                .style("fill", "steelblue")
+                .text("IS Bachelors")
+                .on("mouseover", function() {
+                    d3.selectAll("#svg1 rect").each(function() {
+                        let rect = d3.select(this);
+                        if (rect.attr("degree") != "Bachelors") {
+                            rect.transition()
+                                .duration(200)
+                                .attr("opacity", 0.5);
+                        }
+                    });
+                })
+                .on("mouseout", function() {
+                    d3.selectAll("#svg1 rect")
+                        .transition()
+                        .duration(200)
+                        .attr("opacity", 1);
+                });
+
+            legend
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 20)
+                .style("fill", "orange")
+                .text("IS Masters")
+                .on("mouseover", function() {
+                    d3.selectAll("#svg1 rect").each(function() {
+                        let rect = d3.select(this);
+                        if (rect.attr("degree") != "Masters") {
+                            rect.transition()
+                                .duration(200)
+                                .attr("opacity", 0.5);
+                        }
+                    });
+                })
+                .on("mouseout", function() {
+                    d3.selectAll("#svg1 rect")
+                        .transition()
+                        .duration(200)
+                        .attr("opacity", 1);
+                });
         });
-
-        // major
-        // classyear
-        // degree
-        // salary
-        
     </script>
-  </body>
+</body>
