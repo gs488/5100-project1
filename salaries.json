@@ -1,1 +1,170 @@
-[{"major": "IS", "classyear": "2018", "degree": "Bachelors", "salary": "79914"}, {"major": "IS", "classyear": "2017", "degree": "Bachelors", "salary": "76791"},{"major": "IS", "classyear": "2016", "degree": "Bachelors", "salary": "85667"},{"major": "IS", "classyear": "2015", "degree": "Bachelors", "salary": "71133"},{"major": "IS", "classyear": "2014", "degree": "Bachelors", "salary": "72591"},{"major": "IS", "classyear": "2013", "degree": "Bachelors", "salary": "71273"},{"major": "IS", "classyear": "2012", "degree": "Bachelors", "salary": "65099"},{"major": "IS", "classyear": "2018", "degree": "Masters", "salary": "86456"},{"major": "IS", "classyear": "2017", "degree": "Masters", "salary": "86000"},{"major": "IS", "classyear": "2016", "degree": "Masters", "salary": "86000"},{"major": "IS", "classyear": "2015", "degree": "Masters", "salary": "86000"},{"major": "IS", "classyear": "2014", "degree": "Masters", "salary": "86000"},{"major": "IS", "classyear": "2013", "degree": "Masters", "salary": "86000"},{"major": "IS", "classyear": "2012", "degree": "Masters", "salary": "86000"},{"major": "CS", "classyear": "2018", "degree": "Bachelors", "salary": "101596"},{"major": "CS", "classyear": "2017", "degree": "Bachelors", "salary": "105016"},{"major": "CS", "classyear": "2016", "degree": "Bachelors", "salary": "101498"},{"major": "CS", "classyear": "2015", "degree": "Bachelors", "salary": "98977"},{"major": "CS", "classyear": "2014", "degree": "Bachelors", "salary": "92155"},{"major": "CS", "classyear": "2013", "degree": "Bachelors", "salary": "91957"},{"major": "CS", "classyear": "2012", "degree": "Bachelors", "salary": "88457"},{"major": "CS", "classyear": "2018", "degree": "Masters", "salary": "119346"},{"major": "CS", "classyear": "2017", "degree": "Masters", "salary": "116663"},{"major": "CS", "classyear": "2016", "degree": "Masters", "salary": "106893"},{"major": "CS", "classyear": "2015", "degree": "Masters", "salary": "106509"},{"major": "CS", "classyear": "2014", "degree": "Masters", "salary": "103596"},{"major": "CS", "classyear": "2013", "degree": "Masters", "salary": "98233"},{"major": "CS", "classyear": "2012", "degree": "Masters", "salary": "93765"}]
+[
+    {
+        "major": "IS",
+        "classyear": "2018",
+        "degree": "Bachelors",
+        "salary": "79914"
+    },
+    {
+        "major": "IS",
+        "classyear": "2017",
+        "degree": "Bachelors",
+        "salary": "76791"
+    },
+    {
+        "major": "IS",
+        "classyear": "2016",
+        "degree": "Bachelors",
+        "salary": "85667"
+    },
+    {
+        "major": "IS",
+        "classyear": "2015",
+        "degree": "Bachelors",
+        "salary": "71133"
+    },
+    {
+        "major": "IS",
+        "classyear": "2014",
+        "degree": "Bachelors",
+        "salary": "72591"
+    },
+    {
+        "major": "IS",
+        "classyear": "2013",
+        "degree": "Bachelors",
+        "salary": "71273"
+    },
+    {
+        "major": "IS",
+        "classyear": "2012",
+        "degree": "Bachelors",
+        "salary": "65099"
+    },
+    {
+        "major": "IS",
+        "classyear": "2018",
+        "degree": "Masters",
+        "salary": "86456"
+    },
+    {
+        "major": "IS",
+        "classyear": "2017",
+        "degree": "Masters",
+        "salary": "86000"
+    },
+    {
+        "major": "IS",
+        "classyear": "2016",
+        "degree": "Masters",
+        "salary": "86000"
+    },
+    {
+        "major": "IS",
+        "classyear": "2015",
+        "degree": "Masters",
+        "salary": "86000"
+    },
+    {
+        "major": "IS",
+        "classyear": "2014",
+        "degree": "Masters",
+        "salary": "86000"
+    },
+    {
+        "major": "IS",
+        "classyear": "2013",
+        "degree": "Masters",
+        "salary": "86000"
+    },
+    {
+        "major": "IS",
+        "classyear": "2012",
+        "degree": "Masters",
+        "salary": "86000"
+    },
+    {
+        "major": "CS",
+        "classyear": "2018",
+        "degree": "Bachelors",
+        "salary": "101596"
+    },
+    {
+        "major": "CS",
+        "classyear": "2017",
+        "degree": "Bachelors",
+        "salary": "105016"
+    },
+    {
+        "major": "CS",
+        "classyear": "2016",
+        "degree": "Bachelors",
+        "salary": "101498"
+    },
+    {
+        "major": "CS",
+        "classyear": "2015",
+        "degree": "Bachelors",
+        "salary": "98977"
+    },
+    {
+        "major": "CS",
+        "classyear": "2014",
+        "degree": "Bachelors",
+        "salary": "92155"
+    },
+    {
+        "major": "CS",
+        "classyear": "2013",
+        "degree": "Bachelors",
+        "salary": "91957"
+    },
+    {
+        "major": "CS",
+        "classyear": "2012",
+        "degree": "Bachelors",
+        "salary": "88457"
+    },
+    {
+        "major": "CS",
+        "classyear": "2018",
+        "degree": "Masters",
+        "salary": "119346"
+    },
+    {
+        "major": "CS",
+        "classyear": "2017",
+        "degree": "Masters",
+        "salary": "116663"
+    },
+    {
+        "major": "CS",
+        "classyear": "2016",
+        "degree": "Masters",
+        "salary": "106893"
+    },
+    {
+        "major": "CS",
+        "classyear": "2015",
+        "degree": "Masters",
+        "salary": "106509"
+    },
+    {
+        "major": "CS",
+        "classyear": "2014",
+        "degree": "Masters",
+        "salary": "103596"
+    },
+    {
+        "major": "CS",
+        "classyear": "2013",
+        "degree": "Masters",
+        "salary": "98233"
+    },
+    {
+        "major": "CS",
+        "classyear": "2012",
+        "degree": "Masters",
+        "salary": "93765"
+    }
+]
