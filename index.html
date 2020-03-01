@@ -12,6 +12,7 @@
     </h3>
 
     <div id="chartDiv"></div>
+    <div id="chartDiv2"></div>
     <script>
         // svg setup
         const width = 800;
@@ -322,6 +323,62 @@
                         .duration(200)
                         .attr("opacity", 1);
                 });
+
+            // ------ Chart 2, CS Bachelors vs. CS Masters ----
+            // chartDiv.append("h4")
+            //       .text("Average Salary CS Bachelors vs. CS Masters");
+            
+            // create axises
+            svg2.append("g")
+                .attr("class", "x axis")
+                .attr(
+                    "transform",
+                    "translate(" +
+                        margins.left +
+                        ", " +
+                        (margins.top + chartHeight) +
+                        ")"
+                )
+                .call(yearAxis);
+
+            svg2.append("g")
+                .attr("class", "y axis")
+                .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                )
+                .call(salaryAxisCS);
+
+            //create bars
+            dataCS.forEach((d, i) => {
+                let x = yearScale(new Date(d["classyear"], 0, 1));
+                let fill = "";
+            if (d["degree"] === "Bachelors") {
+                x -= barWidth + barPadding / 2;
+                fill = "steelblue";
+            } else {
+                x += barPadding / 2;
+                fill = "orange";
+            }
+            let y = salaryScaleCS(d["salary"]);
+
+            let bar = chart2
+                .append("rect")
+                .attr("width", barWidth)
+                .attr("height", chartHeight - y)
+                .attr("x", x)
+                .attr("y", y)
+                .attr("year", d["classyear"])
+                .attr("major", d["major"])
+                .attr("degree", d["degree"])
+                .style("fill", fill)
+                .style("stroke", "none");
+            });
+
+            // ------ Chart 3, IS Bachelors vs. IS Masters vs. CS Bachelors vs. CS Masters ----
+
+            //GRACE WILL DO
+
         });
     </script>
 </body>
