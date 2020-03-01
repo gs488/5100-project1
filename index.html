@@ -25,6 +25,7 @@
 
         // create svgs and charts
         const chartDiv = d3.select("#chartDiv");
+        const chartDiv2 = d3.select("#chartDiv2");
 
         chartDiv
             .append("h4")
@@ -45,7 +46,7 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
-        const svg2 = chartDiv
+        const svg2 = chartDiv //charDiv2?
             .append("svg")
             .attr("id", "svg2")
             .attr("width", String(width))
@@ -106,27 +107,59 @@
                 return d["degree"] === "Masters";
             });
 
+            const dataISBachelors = data.filter(d => {
+                return d["major"] === "IS" && d["degree"] === "Bachelors";
+            });
+
+            const dataISMasters = data.filter(d => {
+                return d["major"] === "IS" && d["degree"] === "Masters";
+            });
+
+            const dataCSBachelors = data.filter(d => {
+                return d["major"] === "CS" && d["degree"] === "Bachelors";
+            });
+
+            const dataCSMasters = data.filter(d => {
+                return d["major"] === "CS" && d["degree"] === "Masters";
+            });
+
             // max of salary of different groups
             const salaryMax = d3.max(data, d => {
-                return d["salary"];
+                return Math.max(d["salary"]);
             });
 
             const salaryMaxIS = d3.max(dataIS, d => {
-                return d["salary"];
+                return Math.max(d["salary"]);
             });
 
             const salaryMaxCS = d3.max(dataCS, d => {
-                return d["salary"];
+                return Math.max(d["salary"]);
             });
 
             const salaryMaxBachelors = d3.max(dataBachelors, d => {
-                return d["salary"];
+                return Math.max(d["salary"]);
             });
 
             const salaryMaxMasters = d3.max(dataMasters, d => {
-                return d["salary"];
+                return Math.max(d["salary"]);
             });
 
+            const salaryMaxISBachelors = d3.max(dataISBachelors, d => {
+                return Math.max(d["salary"]);
+            });
+
+            const salaryMaxISMasters = d3.max(dataISMasters, d => {
+                return Math.max(d["salary"]);
+            });
+
+            const salaryMaxCSBachelors = d3.max(dataCSBachelors, d => {
+                return Math.max(d["salary"]);
+            });
+
+            const salaryMaxCSMasters = d3.max(dataCSMasters, d => {
+                return Math.max(d["salary"]);
+            });
+console.log(dataISMasters);
             // scales
             const yearScale = d3
                 .scaleTime()
@@ -140,7 +173,7 @@
 
             const salaryScaleCS = d3
                 .scaleLinear()
-                .domain([80000, 120000])//.domain([0, salaryMaxCS])
+                .domain([80000, salaryMaxCS])
                 .range([chartHeight, 0]);
 
             const salaryScaleBachelors = d3
@@ -325,8 +358,8 @@
                 });
 
             // ------ Chart 2, CS Bachelors vs. CS Masters ----
-            // chartDiv.append("h4")
-            //       .text("Average Salary CS Bachelors vs. CS Masters");
+            chartDiv2.append("h4")
+                .text("Average Salary CS Bachelors vs. CS Masters");
             
             // create axises
             svg2.append("g")
