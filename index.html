@@ -32,6 +32,7 @@
         // create svgs and charts
         const chartDiv = d3.select("#chartDiv");
 
+        // chart 1
         chartDiv
             .append("h4")
             .text("Average Salary IS Bachelors vs. IS Masters");
@@ -50,6 +51,7 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
+        // chart 2
         chartDiv
             .append("h4")
             .text("Average Salary CS Bachelors vs. CS Masters");
@@ -68,6 +70,7 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
+        // chart 3
         chartDiv
             .append("h4")
             .text("Average Salary CS Bachelors vs. IS Bachelors");
@@ -86,6 +89,8 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
+        // chart 4
+
         chartDiv.append("h4").text("Average Salary CS Masters vs. IS Masters");
 
         const svg4 = chartDiv
@@ -102,6 +107,7 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
+        // chart 5
         chartDiv
             .append("h4")
             .text(
@@ -157,6 +163,77 @@
                 return d["major"] === "CS" && d["degree"] === "Masters";
             });
 
+            // function to calculate number of student in a certain location of a certain group
+            let numberOfLocation = (dataGroup, location) => {
+                let num = 0;
+                dataGroup.forEach((d, i) => {
+                    num += Number(d[location]);
+                });
+                return num;
+            };
+
+            // number of different locations of four groups
+            const numISBachelorsNYC = numberOfLocation(dataISBachelors, "nyc");
+            const numISBachelorsSF = numberOfLocation(dataISBachelors, "sf");
+            const numISBachelorsTotal = numberOfLocation(
+                dataISBachelors,
+                "total"
+            );
+
+            const numCSBachelorsNYC = numberOfLocation(dataCSBachelors, "nyc");
+            const numCSBachelorsSF = numberOfLocation(dataCSBachelors, "sf");
+            const numCSBachelorsTotal = numberOfLocation(
+                dataCSBachelors,
+                "total"
+            );
+
+            const numISMastersNYC = numberOfLocation(dataISMasters, "nyc");
+            const numISMastersSF = numberOfLocation(dataISMasters, "sf");
+            const numISMastersTotal = numberOfLocation(dataISMasters, "total");
+            const numCSMastersNYC = numberOfLocation(dataCSMasters, "nyc");
+            const numCSMastersSF = numberOfLocation(dataCSMasters, "sf");
+            const numCSMastersTotal = numberOfLocation(dataCSMasters, "total");
+
+            // data for the donut chart
+            const percentISBachelorsNYC =
+                numISBachelorsNYC / numISBachelorsTotal;
+            const percentISBachelorsSF = numISBachelorsSF / numISBachelorsTotal;
+            const percentISBachelorsOther =
+                1 - percentISBachelorsNYC - percentISBachelorsSF;
+
+            const percentCSBachelorsNYC =
+                numCSBachelorsNYC / numCSBachelorsTotal;
+            const percentCSBachelorsSF = numCSBachelorsSF / numCSBachelorsTotal;
+            const percentCSBachelorsOther =
+                1 - percentCSBachelorsNYC - percentCSBachelorsSF;
+
+            const percentISMastersNYC = numISMastersNYC / numISMastersTotal;
+            const percentISMastersSF = numISMastersSF / numISMastersTotal;
+            const percentISMastersOther =
+                1 - percentISMastersNYC - percentISMastersSF;
+
+            const percentCSMastersNYC = numCSMastersNYC / numCSMastersTotal;
+            const percentCSMastersSF = numCSMastersSF / numCSMastersTotal;
+            const percentCSMastersOther =
+                1 - percentCSMastersNYC - percentCSMastersSF;
+
+            // just console.log() to see the percentages
+            // console.log(percentISBachelorsNYC);
+            // console.log(percentISBachelorsSF);
+            // console.log(percentISBachelorsOther);
+
+            // console.log(percentCSBachelorsNYC);
+            // console.log(percentCSBachelorsSF);
+            // console.log(percentCSBachelorsOther);
+
+            // console.log(percentISMastersNYC);
+            // console.log(percentISMastersSF);
+            // console.log(percentISMastersOther);
+
+            // console.log(percentCSMastersNYC);
+            // console.log(percentCSMastersSF);
+            // console.log(percentCSMastersOther);
+
             // max of salary of different groups
             const salaryMax = d3.max(data, d => {
                 return Math.max(d["salary"]);
@@ -202,7 +279,7 @@
 
             const salaryScaleIS = d3
                 .scaleLinear()
-                .domain([60000, 90000])
+                .domain([50000, 90000])
                 .range([chartHeight, 0]);
 
             const salaryScaleCS = d3
@@ -210,19 +287,19 @@
                 .domain([80000, 120000])
                 .range([chartHeight, 0]);
 
-            const salaryScaleAllData = d3
-                .scaleLinear()
-                .domain([40000, 120000])
-                .range([chartHeight, 0]);
-
             const salaryScaleBachelors = d3
                 .scaleLinear()
-                .domain([60000, 110000])
+                .domain([50000, 110000])
                 .range([chartHeight, 0]);
 
             const salaryScaleMasters = d3
                 .scaleLinear()
                 .domain([80000, 120000])
+                .range([chartHeight, 0]);
+
+            const salaryScaleAllData = d3
+                .scaleLinear()
+                .domain([50000, 120000])
                 .range([chartHeight, 0]);
 
             // Axises
@@ -236,11 +313,11 @@
 
             const salaryAxisCS = d3.axisLeft(salaryScaleCS);
 
-            const salaryAxisAllData = d3.axisLeft(salaryScaleAllData);
-
             const salaryAxisBachelors = d3.axisLeft(salaryScaleBachelors);
 
             const salaryAxisMasters = d3.axisLeft(salaryScaleMasters);
+
+            const salaryAxisAllData = d3.axisLeft(salaryScaleAllData);
 
             // salary text on bar
             let salaryText = svg1
