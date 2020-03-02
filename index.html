@@ -392,7 +392,7 @@
                 .text("CS Masters");
 
             // ------ Chart 3: IS Bachelors vs. CS Bachelors
-            svg4.append("g")
+            svg3.append("g")
                 .attr("class", "x axis")
                 .attr(
                     "transform",
@@ -404,7 +404,7 @@
                 )
                 .call(yearAxis);
 
-            svg4.append("g")
+            svg3.append("g")
                 .attr("class", "y axis")
                 .attr(
                     "transform",
@@ -425,7 +425,7 @@
                 }
                 let y = salaryScaleCSBachelors(d["salary"]);
 
-                let bar = chart4
+                let bar = chart3
                     .append("rect")
                     .attr("width", barWidth)
                     .attr("height", chartHeight - y)
@@ -438,9 +438,39 @@
                     .style("stroke", "none");
             });
 
+            // add legend for char 3
+            let legend3 = svg3
+                .append("g")
+                .attr("id", "legend3")
+                .attr("class", "legend")
+                .attr(
+                    "transform",
+                    "translate(" + (chartWidth + 30) + "," + margins.top + ")"
+                );
+
+            legend3
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 0)
+                .style("fill", colorISBachelors)
+                .text("IS Bachelors");
+
+            legend3
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 20)
+                .style("fill", colorCSBachelors)
+                .text("CS Bachelors");
+
             // ------ Chart 4, IS Masters vs. CS Masters ----
 
-            svg3.append("g")
+            svg4.append("g")
                 .attr("class", "x axis")
                 .attr(
                     "transform",
@@ -452,7 +482,7 @@
                 )
                 .call(yearAxis);
 
-            svg3.append("g")
+            svg4.append("g")
                 .attr("class", "y axis")
                 .attr(
                     "transform",
@@ -473,7 +503,7 @@
                 }
                 let y = salaryScaleCS(d["salary"]);
 
-                let bar = chart3
+                let bar = chart4
                     .append("rect")
                     .attr("width", barWidth)
                     .attr("height", chartHeight - y)
@@ -485,6 +515,36 @@
                     .style("fill", fill)
                     .style("stroke", "none");
             });
+
+            // add legend for char 4
+            let legend4 = svg4
+                .append("g")
+                .attr("id", "legend4")
+                .attr("class", "legend")
+                .attr(
+                    "transform",
+                    "translate(" + (chartWidth + 30) + "," + margins.top + ")"
+                );
+
+            legend4
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 0)
+                .style("fill", colorISMasters)
+                .text("IS Masters");
+
+            legend4
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 20)
+                .style("fill", colorCSMasters)
+                .text("CS Masters");
         });
     </script>
 </body>
