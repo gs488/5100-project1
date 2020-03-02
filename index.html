@@ -46,6 +46,9 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
+        chartDiv.append("h4")
+            .text("Average Salary CS Bachelors vs. CS Masters");
+
         const svg2 = chartDiv //charDiv2?
             .append("svg")
             .attr("id", "svg2")
@@ -365,8 +368,6 @@
                 });
 
             // ------ Chart 2, CS Bachelors vs. CS Masters ----
-            chartDiv.append("h4")
-                .text("Average Salary CS Bachelors vs. CS Masters");
             
             // create axises
             svg2.append("g")
@@ -418,6 +419,7 @@
             // ------ Chart 3, IS Bachelors vs. IS Masters vs. CS Bachelors vs. CS Masters ----
 
             //GRACE WILL DO
+
 
 
             // ------ Chart 4: IS Bachelors vs. CS Bachelors
