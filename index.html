@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <title>Project 1</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <h3>
@@ -11,16 +12,21 @@
         Grace Song gs488, Zhongkai Liu zl777, Jerry Xu lx46
     </h3>
 
-    <div id="chartDiv"></div>
+    <div class="chartDiv" id="chartDiv1"></div>
+    <div class="chartDiv" id="chartDiv2"></div>
+    <div class="chartDiv" id="chartDiv3"></div>
+    <div class="chartDiv" id="chartDiv4"></div>
+    <div class="chartDiv" id="chartDiv5"></div>
+
     <script>
         // svg setup
-        const width = 800;
-        const height = 500;
+        const width = 500;
+        const height = 300;
         const margins = { top: 10, right: 50, bottom: 30, left: 50 };
         const chartWidth = width - margins.right - margins.left;
         const chartHeight = height - margins.top - margins.bottom;
-        const barWidth = 20;
-        const skinnyBarWidth = 15;
+        const barWidth = 15;
+        const skinnyBarWidth = 10;
         const barPadding = 5;
 
         // colors for four groups
@@ -30,14 +36,19 @@
         const colorCSMasters = "purple";
 
         // create svgs and charts
-        const chartDiv = d3.select("#chartDiv");
+        const chartDiv1 = d3.select("#chartDiv1");
+        const chartDiv2 = d3.select("#chartDiv2");
+        const chartDiv3 = d3.select("#chartDiv3");
+        const chartDiv4 = d3.select("#chartDiv4");
+        const chartDiv5 = d3.select("#chartDiv5");
 
         // chart 1
-        chartDiv
+        chartDiv1
             .append("h4")
+            .attr("class", "chartTitle")
             .text("Average Salary IS Bachelors vs. IS Masters");
 
-        const svg1 = chartDiv
+        const svg1 = chartDiv1
             .append("svg")
             .attr("id", "svg1")
             .attr("width", String(width))
@@ -52,11 +63,12 @@
             );
 
         // chart 2
-        chartDiv
+        chartDiv2
             .append("h4")
+            .attr("class", "chartTitle")
             .text("Average Salary CS Bachelors vs. CS Masters");
 
-        const svg2 = chartDiv
+        const svg2 = chartDiv2
             .append("svg")
             .attr("id", "svg2")
             .attr("width", String(width))
@@ -71,11 +83,12 @@
             );
 
         // chart 3
-        chartDiv
+        chartDiv3
             .append("h4")
-            .text("Average Salary CS Bachelors vs. IS Bachelors");
+            .attr("class", "chartTitle")
+            .text("Average Salary IS Bachelors vs. CS Bachelors");
 
-        const svg3 = chartDiv
+        const svg3 = chartDiv3
             .append("svg")
             .attr("id", "svg3")
             .attr("width", String(width))
@@ -91,9 +104,12 @@
 
         // chart 4
 
-        chartDiv.append("h4").text("Average Salary CS Masters vs. IS Masters");
+        chartDiv4
+            .append("h4")
+            .attr("class", "chartTitle")
+            .text("Average Salary IS Masters vs. CS Masters");
 
-        const svg4 = chartDiv
+        const svg4 = chartDiv4
             .append("svg")
             .attr("id", "svg4")
             .attr("width", String(width))
@@ -108,13 +124,14 @@
             );
 
         // chart 5
-        chartDiv
+        chartDiv5
             .append("h4")
+            .attr("class", "chartTitle")
             .text(
                 "Average Salary IS Bachelors, IS Masters, CS Bachelors, and CS Masters"
             );
 
-        const svg5 = chartDiv
+        const svg5 = chartDiv5
             .append("svg")
             .attr("id", "svg5")
             .attr("width", String(width + 50))
@@ -279,22 +296,22 @@
 
             const salaryScaleIS = d3
                 .scaleLinear()
-                .domain([50000, 90000])
+                .domain([50000, 120000])
                 .range([chartHeight, 0]);
 
             const salaryScaleCS = d3
                 .scaleLinear()
-                .domain([80000, 120000])
+                .domain([50000, 120000])
                 .range([chartHeight, 0]);
 
             const salaryScaleBachelors = d3
                 .scaleLinear()
-                .domain([50000, 110000])
+                .domain([50000, 120000])
                 .range([chartHeight, 0]);
 
             const salaryScaleMasters = d3
                 .scaleLinear()
-                .domain([80000, 120000])
+                .domain([50000, 120000])
                 .range([chartHeight, 0]);
 
             const salaryScaleAllData = d3
