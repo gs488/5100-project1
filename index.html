@@ -20,6 +20,7 @@
         const chartWidth = width - margins.right - margins.left;
         const chartHeight = height - margins.top - margins.bottom;
         const barWidth = 20;
+        const skinnyBarWidth = 15;
         const barPadding = 5;
 
         // // create class student total array
@@ -98,6 +99,22 @@
             .attr("height", String(height));
 
         const chart4 = svg4
+            .append("g")
+            .attr("class", "chart")
+            .attr(
+                "transform",
+                "translate(" + margins.left + "," + margins.top + ")"
+            );
+
+        chartDiv.append("h4").text("Average Salary IS Bachelors, IS Masters, CS Bachelors, and CS Masters");
+
+        const svg5 = chartDiv
+            .append("svg")
+            .attr("id", "svg5")
+            .attr("width", String(width))
+            .attr("height", String(height));
+
+        const chart5 = svg5
             .append("g")
             .attr("class", "chart")
             .attr(
@@ -193,6 +210,11 @@
                 .domain([80000, 120000])
                 .range([chartHeight, 0]);
 
+            const salaryScaleAllData = d3
+                .scaleLinear()
+                .domain([40000, 120000])
+                .range([chartHeight, 0]);
+
             const salaryScaleBachelors = d3
                 .scaleLinear()
                 .domain([60000, 110000])
@@ -213,6 +235,8 @@
             const salaryAxisIS = d3.axisLeft(salaryScaleIS).ticks(6);
 
             const salaryAxisCS = d3.axisLeft(salaryScaleCS);
+
+            const salaryAxisAllData = d3.axisLeft(salaryScaleAllData);
 
             const salaryAxisBachelors = d3.axisLeft(salaryScaleBachelors);
 
@@ -542,6 +566,80 @@
                 .attr("y", 20)
                 .style("fill", colorCSMasters)
                 .text("CS Masters");
+
+            // ------ Chart 5, IS Bachelors, IS Masters, CS Bachelors, and CS Masters ----
+
+            svg5.append("g")
+                .attr("class", "x axis")
+                .attr(
+                    "transform",
+                    "translate(" +
+                        margins.left +
+                        ", " +
+                        (margins.top + chartHeight) +
+                        ")"
+                )
+                .call(yearAxis);
+
+            svg5.append("g")
+                .attr("class", "y axis")
+                .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                )
+                .call(salaryAxisAllData);
+
+            //create bars
+            //bars for IS
+            dataIS.forEach((d, i) => {
+                let x = yearScale(new Date(d["classyear"], 0, 1));
+                let fill = "";
+                if (d["degree"] === "Bachelors") {
+                    x -= (skinnyBarWidth * 2 + barPadding * 1.5); 
+                    fill = colorISBachelors;
+                } else {
+                    x -= (skinnyBarWidth + barPadding * 0.5);
+                    fill = colorISMasters;
+                }
+                let y = salaryScaleAllData(d["salary"]);
+
+                let bar = chart5
+                    .append("rect")
+                    .attr("width", skinnyBarWidth)
+                    .attr("height", chartHeight - y)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("year", d["classyear"])
+                    .attr("major", d["major"])
+                    .attr("degree", d["degree"])
+                    .style("fill", fill)
+                    .style("stroke", "none");
+            });
+            //bars for CS
+            dataCS.forEach((d, i) => {
+                let x = yearScale(new Date(d["classyear"], 0, 1));
+                let fill = "";
+                if (d["degree"] === "Bachelors") {
+                    x += barPadding * 0.5;
+                    fill = colorCSBachelors;
+                } else {
+                    x += (skinnyBarWidth + barPadding * 1.5); 
+                    fill = colorCSMasters;
+                }
+                let y = salaryScaleAllData(d["salary"]);
+
+                let bar = chart5
+                    .append("rect")
+                    .attr("width", skinnyBarWidth)
+                    .attr("height", chartHeight - y)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("year", d["classyear"])
+                    .attr("major", d["major"])
+                    .attr("degree", d["degree"])
+                    .style("fill", fill)
+                    .style("stroke", "none");
+            });
         });
     </script>
     <div id="donut"></div>
