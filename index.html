@@ -67,7 +67,9 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
-        chartDiv.append("h4").text("Average Salary CS Masters vs. IS Masters");
+        chartDiv
+            .append("h4")
+            .text("Average Salary CS Bachelors vs. IS Bachelors");
 
         const svg3 = chartDiv
             .append("svg")
@@ -83,9 +85,7 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
-        chartDiv
-            .append("h4")
-            .text("Average Salary CS Bachelors vs. IS Bachelors");
+        chartDiv.append("h4").text("Average Salary CS Masters vs. IS Masters");
 
         const svg4 = chartDiv
             .append("svg")
@@ -439,7 +439,7 @@
                     .style("stroke", "none");
             });
 
-            // ------ Chart 3, IS Masters vs. CS Masters ----
+            // ------ Chart 4, IS Masters vs. CS Masters ----
 
             svg3.append("g")
                 .attr("class", "x axis")
