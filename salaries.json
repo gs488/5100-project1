@@ -1,5 +1,131 @@
 [
     {
+        "major": "All",
+        "classyear": "2018",
+        "degree": "Masters",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "1181"
+    },
+    {
+        "major": "All",
+        "classyear": "2017",
+        "degree": "Masters",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "1063"
+    },
+    {
+        "major": "All",
+        "classyear": "2016",
+        "degree": "Masters",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "980"
+    },
+    {
+        "major": "All",
+        "classyear": "2015",
+        "degree": "Masters",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "969"
+    },
+    {
+        "major": "All",
+        "classyear": "2014",
+        "degree": "Masters",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "639"
+    },
+    {
+        "major": "All",
+        "classyear": "2013",
+        "degree": "Masters",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "552"
+    },
+    {
+        "major": "All",
+        "classyear": "2012",
+        "degree": "Masters",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "587"
+    },
+    {
+        "major": "All",
+        "classyear": "2018",
+        "degree": "Bachelors",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "2962"
+    },
+    {
+        "major": "All",
+        "classyear": "2017",
+        "degree": "Bachelors",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "2924"
+    },
+    {
+        "major": "All",
+        "classyear": "2016",
+        "degree": "Bachelors",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "2641"
+    },
+    {
+        "major": "All",
+        "classyear": "2015",
+        "degree": "Bachelors",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "2532"
+    },
+    {
+        "major": "All",
+        "classyear": "2014",
+        "degree": "Bachelors",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "2535"
+    },
+    {
+        "major": "All",
+        "classyear": "2013",
+        "degree": "Bachelors",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "2108"
+    },
+    {
+        "major": "All",
+        "classyear": "2012",
+        "degree": "Bachelors",
+        "salary": "",
+        "nyc": "",
+        "sf": "",
+        "total": "2557"
+    },
+    {
         "major": "IS",
         "classyear": "2018",
         "degree": "Bachelors",
