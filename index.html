@@ -12,11 +12,12 @@
         Grace Song gs488, Zhongkai Liu zl777, Jerry Xu lx46
     </h3>
 
-    <div class="chartDiv" id="chartDiv1"></div>
-    <div class="chartDiv" id="chartDiv2"></div>
-    <div class="chartDiv" id="chartDiv3"></div>
-    <div class="chartDiv" id="chartDiv4"></div>
-    <div class="chartDiv" id="chartDiv5"></div>
+    <div class="chartDiv salaryChart" id="chartDiv1"></div>
+    <div class="chartDiv salaryChart" id="chartDiv2"></div>
+    <div class="chartDiv salaryChart" id="chartDiv3"></div>
+    <div class="chartDiv salaryChart" id="chartDiv4"></div>
+    <div class="chartDiv salaryChart" id="chartDiv5"></div>
+    <div class="chartDiv" id="chartDiv6"></div>
 
     <script>
         // svg setup
@@ -41,6 +42,7 @@
         const chartDiv3 = d3.select("#chartDiv3");
         const chartDiv4 = d3.select("#chartDiv4");
         const chartDiv5 = d3.select("#chartDiv5");
+        const chartDiv6 = d3.select("#chartDiv6");
 
         // chart 1
         chartDiv1
@@ -146,11 +148,9 @@
             );
 
         // chart 6
-        chartDiv
-            .append("h4")
-            .text("CS vs IS Enrollment");
+        chartDiv6.append("h4").text("CS vs IS Enrollment");
 
-        const svg6 = chartDiv
+        const svg6 = chartDiv6
             .append("svg")
             .attr("id", "svg6")
             .attr("width", String(width))
@@ -832,12 +832,12 @@
                     "translate(" + margins.left + ", " + margins.top + ")"
                 )
                 .call(enrollmentAxis);
-/*
+            /*
             var line = d3.svg.line()
                 .x(function(d){ return x(d.classyear); })
                 .y(function(d) {return y(d.total); });
                 */
-/*
+            /*
 //loop through data
             dataCS.forEach((d, i) => {
                 d.date = d["classyear"];
@@ -855,10 +855,6 @@
                 }
 
             });*/
-
-
-
-
         });
     </script>
 </body>
