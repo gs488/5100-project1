@@ -23,10 +23,6 @@
         const skinnyBarWidth = 15;
         const barPadding = 5;
 
-        // // create class student total array
-        // let studentTotal = [];
-
-
         // colors for four groups
         const colorISBachelors = "steelblue";
         const colorISMasters = "orange";
@@ -106,12 +102,16 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
-        chartDiv.append("h4").text("Average Salary IS Bachelors, IS Masters, CS Bachelors, and CS Masters");
+        chartDiv
+            .append("h4")
+            .text(
+                "Average Salary IS Bachelors, IS Masters, CS Bachelors, and CS Masters"
+            );
 
         const svg5 = chartDiv
             .append("svg")
             .attr("id", "svg5")
-            .attr("width", String(width+50))
+            .attr("width", String(width + 50))
             .attr("height", String(height));
 
         const chart5 = svg5
@@ -595,10 +595,10 @@
                 let x = yearScale(new Date(d["classyear"], 0, 1));
                 let fill = "";
                 if (d["degree"] === "Bachelors") {
-                    x -= (skinnyBarWidth * 2 + barPadding * 1.5); 
+                    x -= skinnyBarWidth * 2 + barPadding * 1.5;
                     fill = colorISBachelors;
                 } else {
-                    x -= (skinnyBarWidth + barPadding * 0.5);
+                    x -= skinnyBarWidth + barPadding * 0.5;
                     fill = colorISMasters;
                 }
                 let y = salaryScaleAllData(d["salary"]);
@@ -623,7 +623,7 @@
                     x += barPadding * 0.5;
                     fill = colorCSBachelors;
                 } else {
-                    x += (skinnyBarWidth + barPadding * 1.5); 
+                    x += skinnyBarWidth + barPadding * 1.5;
                     fill = colorCSMasters;
                 }
                 let y = salaryScaleAllData(d["salary"]);
@@ -668,8 +668,8 @@
                 .attr("font-size", "12px")
                 .attr("x", 15)
                 .attr("y", 20)
-                .style("fill", colorCSBachelors)
-                .text("CS Bachelors");
+                .style("fill", colorISMasters)
+                .text("IS Masters");
 
             legend5
                 .append("text")
@@ -678,8 +678,8 @@
                 .attr("font-size", "12px")
                 .attr("x", 15)
                 .attr("y", 40)
-                .style("fill", colorISMasters)
-                .text("IS Masters");
+                .style("fill", colorCSBachelors)
+                .text("CS Bachelors");
 
             legend5
                 .append("text")
@@ -690,7 +690,6 @@
                 .attr("y", 60)
                 .style("fill", colorCSMasters)
                 .text("CS Masters");
-
         });
     </script>
     <div id="donut"></div>
@@ -710,9 +709,7 @@
         // create svgs and charts
         const donutDiv = d3.select("#donut");
 
-        donutDiv
-            .append("h4")
-            .text("donut");
+        donutDiv.append("h4").text("donut");
 
         const donut_svg = donutDiv
             .append("svg")
@@ -724,23 +721,19 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
-        donut_svg.append("g")
-                 .attr("class", "slices");
-        donut_svg.append("g")
-                 .attr("class", "labels");
-        donut_svg.append("g")
-                 .attr("class", "lines");
-        
+        donut_svg.append("g").attr("class", "slices");
+        donut_svg.append("g").attr("class", "labels");
+        donut_svg.append("g").attr("class", "lines");
+
         var width = 450,
             height = 450,
-            radius = Math.min(width, height)/2;
-        
-        var pie = d3.layout.pie()
-                           .sort(null)
-                           .value(function(d){
-                                return d.value;
-                           });
-        
+            radius = Math.min(width, height) / 2;
 
+        var pie = d3.layout
+            .pie()
+            .sort(null)
+            .value(function(d) {
+                return d.value;
+            });
     </script>
 </body>
