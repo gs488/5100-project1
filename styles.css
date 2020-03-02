@@ -10,3 +10,17 @@ body {
 .chartTitle {
     text-align: center;
 }
+
+#chartDiv5 {
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.gridlines line {
+    stroke: #ddd;
+}
+
+.gridlines .domain {
+    stroke: none;
+}
