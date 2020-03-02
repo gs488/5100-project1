@@ -3,67 +3,100 @@
         "major": "IS",
         "classyear": "2018",
         "degree": "Bachelors",
-        "salary": "79914"
+        "salary": "79914",
+        "nyc": "16",
+        "sf": "6",
+        "total": "52"
     },
     {
         "major": "IS",
         "classyear": "2017",
         "degree": "Bachelors",
-        "salary": "76791"
+        "salary": "76791",
+        "nyc": "14",
+        "sf": "9",
+        "total": "50"
     },
     {
         "major": "IS",
         "classyear": "2016",
         "degree": "Bachelors",
-        "salary": "85667"
+        "salary": "85667",
+        "nyc": "16",
+        "sf": "5",
+        "total": "43"
     },
     {
         "major": "IS",
         "classyear": "2015",
         "degree": "Bachelors",
-        "salary": "71133"
+        "salary": "71133",
+        "nyc": "10",
+        "sf": "3",
+        "total": "30"
     },
     {
         "major": "IS",
         "classyear": "2014",
         "degree": "Bachelors",
-        "salary": "72591"
+        "salary": "72591",
+        "nyc": "7",
+        "sf": "4",
+        "total": "22"
     },
     {
         "major": "IS",
         "classyear": "2013",
         "degree": "Bachelors",
-        "salary": "71273"
+        "salary": "71273",
+        "nyc": "3",
+        "sf": "5",
+        "total": "21"
     },
     {
         "major": "IS",
         "classyear": "2012",
         "degree": "Bachelors",
-        "salary": "65099"
+        "salary": "65099",
+        "nyc": "3",
+        "sf": "2",
+        "total": "14"
     },
     {
         "major": "IS",
         "classyear": "2018",
         "degree": "Masters",
-        "salary": "86456"
+        "salary": "86456",
+        "nyc": "11",
+        "sf": "15",
+        "total": "54"
     },
     {
         "major": "IS",
         "classyear": "2017",
         "degree": "Masters",
-        "salary": "86000"
+        "salary": "86000",
+        "nyc": "14",
+        "sf": "20",
+        "total": "64"
     },
     {
         "major": "IS",
         "classyear": "2016",
         "degree": "Masters",
-        "salary": "86000"
+        "salary": "86000",
+        "nyc": "6",
+        "sf": "5",
+        "total": "26"
     },
     {
         "major": "IS",
         "classyear": "2015",
         "degree": "Masters",
-        "salary": "86000"
+        "salary": "86000",
+        "nyc": "10",
+        "sf": "2",
+        "total": "19"
     },
     {
         "major": "IS",
@@ -75,96 +108,144 @@
         "major": "IS",
         "classyear": "2013",
         "degree": "Masters",
-        "salary": "86000"
+        "salary": "86000",
+        "nyc": "7",
+        "sf": "0",
+        "total": "12"
     },
     {
         "major": "IS",
         "classyear": "2012",
         "degree": "Masters",
-        "salary": "86000"
+        "salary": "86000",
+        "nyc": "1",
+        "sf": "1",
+        "total": "9"
     },
     {
         "major": "CS",
         "classyear": "2018",
         "degree": "Bachelors",
-        "salary": "101596"
+        "salary": "101596",
+        "nyc": "39",
+        "sf": "46",
+        "total": "228"
     },
     {
         "major": "CS",
         "classyear": "2017",
         "degree": "Bachelors",
-        "salary": "105016"
+        "salary": "105016",
+        "nyc": "32",
+        "sf": "56",
+        "total": "212"
     },
     {
         "major": "CS",
         "classyear": "2016",
         "degree": "Bachelors",
-        "salary": "101498"
+        "salary": "101498",
+        "nyc": "37",
+        "sf": "34",
+        "total": "156"
     },
     {
         "major": "CS",
         "classyear": "2015",
         "degree": "Bachelors",
-        "salary": "98977"
+        "salary": "98977",
+        "nyc": "16",
+        "sf": "29",
+        "total": "100"
     },
     {
         "major": "CS",
         "classyear": "2014",
         "degree": "Bachelors",
-        "salary": "92155"
+        "salary": "92155",
+        "nyc": "13",
+        "sf": "21",
+        "total": "77"
     },
     {
         "major": "CS",
         "classyear": "2013",
         "degree": "Bachelors",
-        "salary": "91957"
+        "salary": "91957",
+        "nyc": "11",
+        "sf": "22",
+        "total": "72"
     },
     {
         "major": "CS",
         "classyear": "2012",
         "degree": "Bachelors",
-        "salary": "88457"
+        "salary": "88457",
+        "nyc": "15",
+        "sf": "14",
+        "total": "64"
     },
     {
         "major": "CS",
         "classyear": "2018",
         "degree": "Masters",
-        "salary": "119346"
+        "salary": "119346",
+        "nyc": "50",
+        "sf": "67",
+        "total": "196"
     },
     {
         "major": "CS",
         "classyear": "2017",
         "degree": "Masters",
-        "salary": "116663"
+        "salary": "116663",
+        "nyc": "33",
+        "sf": "38",
+        "total": "136"
     },
     {
         "major": "CS",
         "classyear": "2016",
         "degree": "Masters",
-        "salary": "106893"
+        "salary": "106893",
+        "nyc": "37",
+        "sf": "46",
+        "total": "149"
     },
     {
         "major": "CS",
         "classyear": "2015",
         "degree": "Masters",
-        "salary": "106509"
+        "salary": "106509",
+        "nyc": "20",
+        "sf": "46",
+        "total": "116"
     },
     {
         "major": "CS",
         "classyear": "2014",
         "degree": "Masters",
-        "salary": "103596"
+        "salary": "103596",
+        "nyc": "9",
+        "sf": "33",
+        "total": "79"
     },
     {
         "major": "CS",
         "classyear": "2013",
         "degree": "Masters",
-        "salary": "98233"
+        "salary": "98233",
+        "nyc": "8",
+        "sf": "20",
+        "total": "49"
     },
     {
         "major": "CS",
         "classyear": "2012",
         "degree": "Masters",
-        "salary": "93765"
+        "salary": "93765",
+        "nyc": "7",
+        "sf": "14",
+        "total": "52"
     }
 ]
