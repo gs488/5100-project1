@@ -67,6 +67,8 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
+        chartDiv.append("h4").text("Average Salary CS Masters vs. IS Masters");
+
         const svg3 = chartDiv
             .append("svg")
             .attr("id", "svg3")
@@ -80,6 +82,10 @@
                 "transform",
                 "translate(" + margins.left + "," + margins.top + ")"
             );
+
+        chartDiv
+            .append("h4")
+            .text("Average Salary CS Bachelors vs. IS Bachelors");
 
         const svg4 = chartDiv
             .append("svg")
