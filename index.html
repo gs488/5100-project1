@@ -769,48 +769,4 @@
                 .text("CS Masters");
         });
     </script>
-    <div id="donut"></div>
-    <script>
-        // svg setup
-        const width = 500;
-        const height = 500;
-        const margins = { top: 10, right: 10, bottom: 10, left: 10 };
-        const chartWidth = width - margins.right - margins.left;
-        const chartHeight = height - margins.top - margins.bottom;
-
-        // colors for four groups
-        const colorNYC = "steelblue";
-        const colorSF = "orange";
-        const colorOTHER = "grey";
-
-        // create svgs and charts
-        const donutDiv = d3.select("#donut");
-
-        donutDiv.append("h4").text("donut");
-
-        const donut_svg = donutDiv
-            .append("svg")
-            .attr("id", "donut_svg")
-            .attr("width", String(width))
-            .attr("height", String(height))
-            .attr(
-                "transform",
-                "translate(" + margins.left + "," + margins.top + ")"
-            );
-
-        donut_svg.append("g").attr("class", "slices");
-        donut_svg.append("g").attr("class", "labels");
-        donut_svg.append("g").attr("class", "lines");
-
-        var width = 450,
-            height = 450,
-            radius = Math.min(width, height) / 2;
-
-        var pie = d3.layout
-            .pie()
-            .sort(null)
-            .value(function(d) {
-                return d.value;
-            });
-    </script>
 </body>
