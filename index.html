@@ -271,7 +271,15 @@
                 return Math.max(d["salary"]);
             });
 
+            const dateExtent = d3.extent(data, d => d["classyear"]);
+
             // scales
+
+            const dateScale = d3
+                .scaleTime()
+                .domain(dateExtent)
+                .range([0,chartWidth]);
+
             const yearScale = d3
                 .scaleTime()
                 .domain([new Date(2011, 6, 1), new Date(2018, 6, 1)])
@@ -439,7 +447,6 @@
 
             const chart6 = svg6
                 .append("g")
-                .attr("id", "chart6")
                 .attr("class", "chart")
                 .attr(
                     "transform",
@@ -901,29 +908,14 @@
                     "translate(" + margins.left + ", " + margins.top + ")"
                 )
                 .call(enrollmentAxis);
-            /*
-                    var line = d3.svg.line()
-                        .x(function(d){ return x(d.classyear); })
-                        .y(function(d) {return y(d.total); });
-                        */
-            /*
-        //loop through data
-                    dataCS.forEach((d, i) => {
-                        d.date = d["classyear"];
-                        d.total = +d["total"]
+
+            var lineGen = d3.line()
+                .x( d => dateScale(d["classyear"]) )
+                .y( d => enrollmentScale(d["total"]) )
+                .curve(d3.curveMonotoneX);
 
 
-                        let x = yearScale(new Date(d["classyear"], 0, 1));
-                        let fill = "";
-                        if (d["degree"] === "Bachelors") {
-                            x -= skinnyBarWidth * 2 + barPadding * 1.5;
-                            fill = colorCSBachelors;
-                        } else {
-                            x -= skinnyBarWidth + barPadding * 0.5;
-                            fill = colorCSMasters;
-                        }
 
-                    });*/
         });
     </script>
 </body>
