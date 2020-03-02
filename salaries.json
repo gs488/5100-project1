@@ -2,7 +2,7 @@
     {
         "major": "All",
         "classyear": "2018",
-        "degree": "Masters",
+        "degree": "AllMasters",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -11,7 +11,7 @@
     {
         "major": "All",
         "classyear": "2017",
-        "degree": "Masters",
+        "degree": "AllMasters",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -20,7 +20,7 @@
     {
         "major": "All",
         "classyear": "2016",
-        "degree": "Masters",
+        "degree": "AllMasters",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -29,7 +29,7 @@
     {
         "major": "All",
         "classyear": "2015",
-        "degree": "Masters",
+        "degree": "AllMasters",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -38,7 +38,7 @@
     {
         "major": "All",
         "classyear": "2014",
-        "degree": "Masters",
+        "degree": "AllMasters",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -47,7 +47,7 @@
     {
         "major": "All",
         "classyear": "2013",
-        "degree": "Masters",
+        "degree": "AllMasters",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -56,7 +56,7 @@
     {
         "major": "All",
         "classyear": "2012",
-        "degree": "Masters",
+        "degree": "AllMasters",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -65,7 +65,7 @@
     {
         "major": "All",
         "classyear": "2018",
-        "degree": "Bachelors",
+        "degree": "AllBachelors",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -74,7 +74,7 @@
     {
         "major": "All",
         "classyear": "2017",
-        "degree": "Bachelors",
+        "degree": "AllBachelors",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -83,7 +83,7 @@
     {
         "major": "All",
         "classyear": "2016",
-        "degree": "Bachelors",
+        "degree": "AllBachelors",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -92,7 +92,7 @@
     {
         "major": "All",
         "classyear": "2015",
-        "degree": "Bachelors",
+        "degree": "AllBachelors",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -101,7 +101,7 @@
     {
         "major": "All",
         "classyear": "2014",
-        "degree": "Bachelors",
+        "degree": "AllBachelors",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -110,7 +110,7 @@
     {
         "major": "All",
         "classyear": "2013",
-        "degree": "Bachelors",
+        "degree": "AllBachelors",
         "salary": "",
         "nyc": "",
         "sf": "",
@@ -119,7 +119,7 @@
     {
         "major": "All",
         "classyear": "2012",
-        "degree": "Bachelors",
+        "degree": "AllBachelors",
         "salary": "",
         "nyc": "",
         "sf": "",
