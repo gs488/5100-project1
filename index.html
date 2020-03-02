@@ -310,7 +310,7 @@
 
             const enrollmentScale = d3
                 .scaleLinear()
-                .domain([0, 3000])
+                .domain([0, 250])
                 .range([chartHeight, 0]);
 
             // Gridlines
@@ -913,6 +913,46 @@
                 .x( d => dateScale(d["classyear"]) )
                 .y( d => enrollmentScale(d["total"]) )
                 .curve(d3.curveMonotoneX);
+
+            var ISBachelorsData = [];
+            dataISBachelors.forEach((d, i)=> {
+                ISBachelorsData.push(d);
+            })
+
+            var CSBachelorsData = [];
+            dataCSBachelors.forEach((d, i)=> {
+                CSBachelorsData.push(d);
+            })
+
+            chart6.append("path")
+                .datum(dataISBachelors)
+                .attr("class", "line")
+                .attr("fill", "none")
+                .attr("stroke", colorISBachelors)
+                .attr("stroke-width",3)
+                .attr("d", lineGen);
+
+            chart6.selectAll("circle").data(dataISBachelors)
+                .join("circle")
+                .attr("r", 3)
+                .attr("fill", colorISBachelors)
+                .attr("cx", d => dateScale(d["classyear"]) )
+                .attr("cy", d => enrollmentScale(d["total"]) );
+
+            chart6.append("path")
+                .datum(dataCSBachelors)
+                .attr("class", "line")
+                .attr("fill", "none")
+                .attr("stroke", colorCSBachelors)
+                .attr("stroke-width",3)
+                .attr("d", lineGen);
+
+            chart6.selectAll("circle").data(dataCSBachelors)
+                .join("circle")
+                .attr("r", 3)
+                .attr("fill", colorCSBachelors)
+                .attr("cx", d => dateScale(d["classyear"]) )
+                .attr("cy", d => enrollmentScale(d["total"]) );
 
 
 
