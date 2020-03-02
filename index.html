@@ -111,7 +111,7 @@
         const svg5 = chartDiv
             .append("svg")
             .attr("id", "svg5")
-            .attr("width", String(width))
+            .attr("width", String(width+50))
             .attr("height", String(height));
 
         const chart5 = svg5
@@ -640,6 +640,57 @@
                     .style("fill", fill)
                     .style("stroke", "none");
             });
+
+            // add legend for chart 5
+            let legend5 = svg5
+                .append("g")
+                .attr("id", "legend5")
+                .attr("class", "legend")
+                .attr(
+                    "transform",
+                    "translate(" + (chartWidth + 30) + "," + margins.top + ")"
+                );
+
+            legend5
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 15)
+                .attr("y", 0)
+                .style("fill", colorISBachelors)
+                .text("IS Bachelors");
+
+            legend5
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 15)
+                .attr("y", 20)
+                .style("fill", colorCSBachelors)
+                .text("CS Bachelors");
+
+            legend5
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 15)
+                .attr("y", 40)
+                .style("fill", colorISMasters)
+                .text("IS Masters");
+
+            legend5
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 15)
+                .attr("y", 60)
+                .style("fill", colorCSMasters)
+                .text("CS Masters");
+
         });
     </script>
     <div id="donut"></div>
