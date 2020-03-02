@@ -12,7 +12,6 @@
     </h3>
 
     <div id="chartDiv"></div>
-    <div id="chartDiv2"></div>
     <script>
         // svg setup
         const width = 800;
@@ -23,14 +22,18 @@
         const barWidth = 20;
         const barPadding = 5;
 
+        // colors for four groups
+        const colorISBachelors = "steelblue";
+        const colorISMasters = "orange";
+        const colorCSBachelors = "green";
+        const colorCSMasters = "purple";
+
         // create svgs and charts
         const chartDiv = d3.select("#chartDiv");
-        const chartDiv2 = d3.select("#chartDiv2");
 
         chartDiv
             .append("h4")
             .text("Average Salary IS Bachelors vs. IS Masters");
-        // .style("text-align", "center");
 
         const svg1 = chartDiv
             .append("svg")
@@ -46,7 +49,8 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
-        chartDiv.append("h4")
+        chartDiv
+            .append("h4")
             .text("Average Salary CS Bachelors vs. CS Masters");
 
         const svg2 = chartDiv //charDiv2?
@@ -63,6 +67,8 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
+        chartDiv.append("h4").text("Average Salary CS Masters vs. IS Masters");
+
         const svg3 = chartDiv
             .append("svg")
             .attr("id", "svg3")
@@ -76,6 +82,10 @@
                 "transform",
                 "translate(" + margins.left + "," + margins.top + ")"
             );
+
+        chartDiv
+            .append("h4")
+            .text("Average Salary CS Bachelors vs. IS Bachelors");
 
         const svg4 = chartDiv
             .append("svg")
@@ -162,7 +172,7 @@
             const salaryMaxCSMasters = d3.max(dataCSMasters, d => {
                 return Math.max(d["salary"]);
             });
-//console.log(dataISMasters);
+
             // scales
             const yearScale = d3
                 .scaleTime()
@@ -176,7 +186,7 @@
 
             const salaryScaleCS = d3
                 .scaleLinear()
-                .domain([80000, salaryMaxCS])
+                .domain([80000, 120000])
                 .range([chartHeight, 0]);
 
             const salaryScaleCSBachelors = d3
@@ -253,10 +263,10 @@
                 let fill = "";
                 if (d["degree"] === "Bachelors") {
                     x -= barWidth + barPadding / 2;
-                    fill = "steelblue";
+                    fill = colorISBachelors;
                 } else {
                     x += barPadding / 2;
-                    fill = "orange";
+                    fill = colorISMasters;
                 }
                 let y = salaryScaleIS(d["salary"]);
 
@@ -271,42 +281,10 @@
                     .attr("degree", d["degree"])
                     .style("fill", fill)
                     .style("stroke", "none");
-
-                // Event listeners
-                bar.on("mouseover", function() {
-                    let currentRect = d3.select(this);
-                    d3.selectAll("#svg1 rect").each(function() {
-                        let rect = d3.select(this);
-                        if (
-                            rect.attr("year") != currentRect.attr("year") ||
-                            rect.attr("degree") != currentRect.attr("degree")
-                        ) {
-                            rect.transition()
-                                .duration(200)
-                                .attr("opacity", 0.5);
-                        }
-                    });
-
-                    salaryText
-                        .attr("x", x + barWidth / 2)
-                        .attr("y", y - 12)
-                        .text(d["salary"]);
-                });
-
-                bar.on("mouseout", function() {
-                    d3.selectAll("#svg1 rect")
-                        .transition()
-                        .duration(200)
-                        .attr("opacity", 1);
-                    salaryText
-                        .attr("x", 0)
-                        .attr("y", 0)
-                        .text("");
-                });
             });
 
             // add legend for char 1
-            let legend = svg1
+            let legend1 = svg1
                 .append("g")
                 .attr("id", "legend1")
                 .attr("class", "legend")
@@ -315,60 +293,27 @@
                     "translate(" + (chartWidth + 30) + "," + margins.top + ")"
                 );
 
-            legend
+            legend1
                 .append("text")
                 .attr("text-anchor", "start")
                 .attr("alignment-baseline", "hanging")
                 .attr("font-size", "12px")
                 .attr("x", 0)
                 .attr("y", 0)
-                .style("fill", "steelblue")
-                .text("IS Bachelors")
-                .on("mouseover", function() {
-                    d3.selectAll("#svg1 rect").each(function() {
-                        let rect = d3.select(this);
-                        if (rect.attr("degree") != "Bachelors") {
-                            rect.transition()
-                                .duration(200)
-                                .attr("opacity", 0.5);
-                        }
-                    });
-                })
-                .on("mouseout", function() {
-                    d3.selectAll("#svg1 rect")
-                        .transition()
-                        .duration(200)
-                        .attr("opacity", 1);
-                });
+                .style("fill", colorISBachelors)
+                .text("IS Bachelors");
 
-            legend
+            legend1
                 .append("text")
                 .attr("text-anchor", "start")
                 .attr("alignment-baseline", "hanging")
                 .attr("font-size", "12px")
                 .attr("x", 0)
                 .attr("y", 20)
-                .style("fill", "orange")
-                .text("IS Masters")
-                .on("mouseover", function() {
-                    d3.selectAll("#svg1 rect").each(function() {
-                        let rect = d3.select(this);
-                        if (rect.attr("degree") != "Masters") {
-                            rect.transition()
-                                .duration(200)
-                                .attr("opacity", 0.5);
-                        }
-                    });
-                })
-                .on("mouseout", function() {
-                    d3.selectAll("#svg1 rect")
-                        .transition()
-                        .duration(200)
-                        .attr("opacity", 1);
-                });
+                .style("fill", colorISMasters)
+                .text("IS Masters");
 
             // ------ Chart 2, CS Bachelors vs. CS Masters ----
-            
             // create axises
             svg2.append("g")
                 .attr("class", "x axis")
@@ -394,35 +339,59 @@
             dataCS.forEach((d, i) => {
                 let x = yearScale(new Date(d["classyear"], 0, 1));
                 let fill = "";
-            if (d["degree"] === "Bachelors") {
-                x -= barWidth + barPadding / 2;
-                fill = "steelblue";
-            } else {
-                x += barPadding / 2;
-                fill = "orange";
-            }
-            let y = salaryScaleCS(d["salary"]);
+                if (d["degree"] === "Bachelors") {
+                    x -= barWidth + barPadding / 2;
+                    fill = colorCSBachelors;
+                } else {
+                    x += barPadding / 2;
+                    fill = colorCSMasters;
+                }
+                let y = salaryScaleCS(d["salary"]);
 
-            let bar = chart2
-                .append("rect")
-                .attr("width", barWidth)
-                .attr("height", chartHeight - y)
-                .attr("x", x)
-                .attr("y", y)
-                .attr("year", d["classyear"])
-                .attr("major", d["major"])
-                .attr("degree", d["degree"])
-                .style("fill", fill)
-                .style("stroke", "none");
+                let bar = chart2
+                    .append("rect")
+                    .attr("width", barWidth)
+                    .attr("height", chartHeight - y)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("year", d["classyear"])
+                    .attr("major", d["major"])
+                    .attr("degree", d["degree"])
+                    .style("fill", fill)
+                    .style("stroke", "none");
             });
 
-            // ------ Chart 3, IS Bachelors vs. IS Masters vs. CS Bachelors vs. CS Masters ----
+            // add legend for char 2
+            let legend2 = svg2
+                .append("g")
+                .attr("id", "legend2")
+                .attr("class", "legend")
+                .attr(
+                    "transform",
+                    "translate(" + (chartWidth + 30) + "," + margins.top + ")"
+                );
 
-            //GRACE WILL DO
+            legend2
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 0)
+                .style("fill", colorCSBachelors)
+                .text("CS Bachelors");
 
+            legend2
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 20)
+                .style("fill", colorCSMasters)
+                .text("CS Masters");
 
-
-            // ------ Chart 4: IS Bachelors vs. CS Bachelors
+            // ------ Chart 3: IS Bachelors vs. CS Bachelors
             svg4.append("g")
                 .attr("class", "x axis")
                 .attr(
@@ -442,48 +411,79 @@
                     "translate(" + margins.left + ", " + margins.top + ")"
                 )
                 .call(salaryAxisCSBachelors);
+
             //create bars
-            //bars for CS Bachelors
-            dataCS.forEach((d, i) => {
+            dataBachelors.forEach((d, i) => {
                 let x = yearScale(new Date(d["classyear"], 0, 1));
                 let fill = "";
-                if (d["degree"] === "Bachelors") {
+                if (d["major"] === "CS") {
                     x += barPadding / 2;
-                    fill = "purple";
-                    let y = salaryScaleCSBachelors(d["salary"]);
-                    let bar = chart4
-                        .append("rect")
-                        .attr("width", barWidth)
-                        .attr("height", chartHeight - y)
-                        .attr("x", x)
-                        .attr("y", y)
-                        .attr("year", d["classyear"])
-                        .attr("major", d["major"])
-                        .attr("degree", d["degree"])
-                        .style("fill", fill)
-                        .style("stroke", "none");
+                    fill = colorCSBachelors;
+                } else {
+                    x -= barWidth + barPadding / 2;
+                    fill = colorISBachelors;
                 }
+                let y = salaryScaleCSBachelors(d["salary"]);
+
+                let bar = chart4
+                    .append("rect")
+                    .attr("width", barWidth)
+                    .attr("height", chartHeight - y)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("year", d["classyear"])
+                    .attr("major", d["major"])
+                    .attr("degree", d["degree"])
+                    .style("fill", fill)
+                    .style("stroke", "none");
             });
-            //bars for IS Bachelors
-            dataIS.forEach((d, i) => {
+
+            // ------ Chart 3, IS Masters vs. CS Masters ----
+
+            svg3.append("g")
+                .attr("class", "x axis")
+                .attr(
+                    "transform",
+                    "translate(" +
+                        margins.left +
+                        ", " +
+                        (margins.top + chartHeight) +
+                        ")"
+                )
+                .call(yearAxis);
+
+            svg3.append("g")
+                .attr("class", "y axis")
+                .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                )
+                .call(salaryAxisCS);
+
+            //create bars
+            dataMasters.forEach((d, i) => {
                 let x = yearScale(new Date(d["classyear"], 0, 1));
                 let fill = "";
-                if (d["degree"] === "Bachelors") {
+                if (d["major"] === "CS") {
+                    x += barPadding / 2;
+                    fill = colorCSMasters;
+                } else {
                     x -= barWidth + barPadding / 2;
-                    fill = "green";
-                    let y = salaryScaleCSBachelors(d["salary"]);
-                    let bar = chart4
-                        .append("rect")
-                        .attr("width", barWidth)
-                        .attr("height", chartHeight - y)
-                        .attr("x", x)
-                        .attr("y", y)
-                        .attr("year", d["classyear"])
-                        .attr("major", d["major"])
-                        .attr("degree", d["degree"])
-                        .style("fill", fill)
-                        .style("stroke", "none");
+                    fill = colorISMasters;
                 }
+                let y = salaryScaleCS(d["salary"]);
+
+                let bar = chart3
+                    .append("rect")
+                    .attr("width", barWidth)
+                    .attr("height", chartHeight - y)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("year", d["classyear"])
+                    .attr("major", d["major"])
+                    .attr("degree", d["degree"])
+                    .style("fill", fill)
+                    .style("stroke", "none");
             });
         });
     </script>
