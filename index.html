@@ -23,6 +23,12 @@
         const barWidth = 20;
         const barPadding = 5;
 
+        // colors for four groups
+        const colorISBachelors = "steelblue";
+        const colorISMasters = "orange";
+        const colorCSBachelors = "green";
+        const colorCSMasters = "purple";
+
         // create svgs and charts
         const chartDiv = d3.select("#chartDiv");
         const chartDiv2 = d3.select("#chartDiv2");
@@ -44,6 +50,10 @@
                 "transform",
                 "translate(" + margins.left + "," + margins.top + ")"
             );
+
+        chartDiv
+            .append("h4")
+            .text("Average Salary CS Bachelors vs. CS Masters");
 
         const svg2 = chartDiv //charDiv2?
             .append("svg")
@@ -172,7 +182,7 @@
 
             const salaryScaleCS = d3
                 .scaleLinear()
-                .domain([80000, salaryMaxCS])
+                .domain([80000, 120000])
                 .range([chartHeight, 0]);
 
             const salaryScaleCSBachelors = d3
@@ -249,7 +259,7 @@
                 let fill = "";
                 if (d["degree"] === "Bachelors") {
                     x -= barWidth + barPadding / 2;
-                    fill = "steelblue";
+                    fill = colorISBachelors;
                 } else {
                     x += barPadding / 2;
                     fill = "orange";
@@ -270,7 +280,7 @@
             });
 
             // add legend for char 1
-            let legend = svg1
+            let legend1 = svg1
                 .append("g")
                 .attr("id", "legend1")
                 .attr("class", "legend")
@@ -279,7 +289,7 @@
                     "translate(" + (chartWidth + 30) + "," + margins.top + ")"
                 );
 
-            legend
+            legend1
                 .append("text")
                 .attr("text-anchor", "start")
                 .attr("alignment-baseline", "hanging")
@@ -289,7 +299,7 @@
                 .style("fill", "steelblue")
                 .text("IS Bachelors");
 
-            legend
+            legend1
                 .append("text")
                 .attr("text-anchor", "start")
                 .attr("alignment-baseline", "hanging")
@@ -300,9 +310,6 @@
                 .text("IS Masters");
 
             // ------ Chart 2, CS Bachelors vs. CS Masters ----
-            chartDiv
-                .append("h4")
-                .text("Average Salary CS Bachelors vs. CS Masters");
 
             // create axises
             svg2.append("g")
@@ -350,6 +357,36 @@
                     .style("fill", fill)
                     .style("stroke", "none");
             });
+
+            // add legend for char 2
+            let legend2 = svg2
+                .append("g")
+                .attr("id", "legend2")
+                .attr("class", "legend")
+                .attr(
+                    "transform",
+                    "translate(" + (chartWidth + 30) + "," + margins.top + ")"
+                );
+
+            legend2
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 0)
+                .style("fill", "steelblue")
+                .text("CS Bachelors");
+
+            legend2
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 20)
+                .style("fill", "orange")
+                .text("CS Masters");
 
             // ------ Chart 3, IS Bachelors vs. IS Masters vs. CS Bachelors vs. CS Masters ----
 
