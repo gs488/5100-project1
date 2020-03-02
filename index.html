@@ -914,16 +914,6 @@
                 .y( d => enrollmentScale(d["total"]) )
                 .curve(d3.curveMonotoneX);
 
-            var ISBachelorsData = [];
-            dataISBachelors.forEach((d, i)=> {
-                ISBachelorsData.push(d);
-            })
-
-            var CSBachelorsData = [];
-            dataCSBachelors.forEach((d, i)=> {
-                CSBachelorsData.push(d);
-            })
-
             chart6.append("path")
                 .datum(dataISBachelors)
                 .attr("class", "line")
@@ -932,13 +922,24 @@
                 .attr("stroke-width",3)
                 .attr("d", lineGen);
 
-            chart6.selectAll("circle").data(dataISBachelors)
+            dataISBachelors.forEach((d, i) => {
+                let circle = chart6
+                                .append("circle")
+                                .attr("r",3)
+                                .attr("fill", colorISBachelors)
+                                .attr("cx", dateScale(d["classyear"]) )
+                                .attr("cy", enrollmentScale(d["total"]) );
+            });
+
+/*
+            chart6.selectAll("circle")
+                .data(dataISBachelors)
                 .join("circle")
                 .attr("r", 3)
                 .attr("fill", colorISBachelors)
                 .attr("cx", d => dateScale(d["classyear"]) )
                 .attr("cy", d => enrollmentScale(d["total"]) );
-
+*/
             chart6.append("path")
                 .datum(dataCSBachelors)
                 .attr("class", "line")
@@ -947,15 +948,24 @@
                 .attr("stroke-width",3)
                 .attr("d", lineGen);
 
-            chart6.selectAll("circle").data(dataCSBachelors)
+            dataCSBachelors.forEach((d, i) => {
+                let circle = chart6
+                                .append("circle")
+                                .attr("r",3)
+                                .attr("fill", colorCSBachelors)
+                                .attr("cx", dateScale(d["classyear"]) )
+                                .attr("cy", enrollmentScale(d["total"]) );
+            });
+
+/*
+            chart6.selectAll("circle")
+                .data(dataCSBachelors)
                 .join("circle")
                 .attr("r", 3)
                 .attr("fill", colorCSBachelors)
                 .attr("cx", d => dateScale(d["classyear"]) )
                 .attr("cy", d => enrollmentScale(d["total"]) );
-
-
-
+*/
         });
     </script>
 </body>
