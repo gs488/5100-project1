@@ -145,6 +145,25 @@
                 "translate(" + margins.left + "," + margins.top + ")"
             );
 
+        // chart 6
+        chartDiv
+            .append("h4")
+            .text("CS vs IS Enrollment");
+
+        const svg6 = chartDiv
+            .append("svg")
+            .attr("id", "svg6")
+            .attr("width", String(width))
+            .attr("height", String(height));
+        const chart6 = svg6
+            .append("g")
+            .attr("id", "chart6")
+            .attr("class", "chart")
+            .attr(
+                "transform",
+                "translate(" + margins.left + "," + margins.top + ")"
+            );
+
         // retrieve JSON file
         d3.json("./salaries.json").then(data => {
             // filter data into different groups
@@ -319,6 +338,11 @@
                 .domain([50000, 120000])
                 .range([chartHeight, 0]);
 
+            const enrollmentScale = d3
+                .scaleLinear()
+                .domain([0, 3000])
+                .range([chartHeight, 0]);
+
             // Axises
             const yearAxis = d3
                 .axisBottom(yearScale)
@@ -335,6 +359,8 @@
             const salaryAxisMasters = d3.axisLeft(salaryScaleMasters);
 
             const salaryAxisAllData = d3.axisLeft(salaryScaleAllData);
+
+            const enrollmentAxis = d3.axisLeft(enrollmentScale);
 
             // salary text on bar
             let salaryText = svg1
@@ -784,6 +810,55 @@
                 .attr("y", 60)
                 .style("fill", colorCSMasters)
                 .text("CS Masters");
+
+            // ------ Chart 6, CS vs IS enrollment line graph ----
+
+            svg6.append("g")
+                .attr("class", "x axis")
+                .attr(
+                    "transform",
+                    "translate(" +
+                        margins.left +
+                        ", " +
+                        (margins.top + chartHeight) +
+                        ")"
+                )
+                .call(yearAxis);
+
+            svg6.append("g")
+                .attr("class", "y axis")
+                .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                )
+                .call(enrollmentAxis);
+/*
+            var line = d3.svg.line()
+                .x(function(d){ return x(d.classyear); })
+                .y(function(d) {return y(d.total); });
+                */
+/*
+//loop through data
+            dataCS.forEach((d, i) => {
+                d.date = d["classyear"];
+                d.total = +d["total"]
+
+
+                let x = yearScale(new Date(d["classyear"], 0, 1));
+                let fill = "";
+                if (d["degree"] === "Bachelors") {
+                    x -= skinnyBarWidth * 2 + barPadding * 1.5;
+                    fill = colorCSBachelors;
+                } else {
+                    x -= skinnyBarWidth + barPadding * 0.5;
+                    fill = colorCSMasters;
+                }
+
+            });*/
+
+
+
+
         });
     </script>
 </body>
