@@ -260,7 +260,7 @@
                     fill = colorISBachelors;
                 } else {
                     x += barPadding / 2;
-                    fill = "orange";
+                    fill = colorISMasters;
                 }
                 let y = salaryScaleIS(d["salary"]);
 
@@ -294,7 +294,7 @@
                 .attr("font-size", "12px")
                 .attr("x", 0)
                 .attr("y", 0)
-                .style("fill", "steelblue")
+                .style("fill", colorISBachelors)
                 .text("IS Bachelors");
 
             legend1
@@ -304,7 +304,7 @@
                 .attr("font-size", "12px")
                 .attr("x", 0)
                 .attr("y", 20)
-                .style("fill", "orange")
+                .style("fill", colorISMasters)
                 .text("IS Masters");
 
             // ------ Chart 2, CS Bachelors vs. CS Masters ----
@@ -336,10 +336,10 @@
                 let fill = "";
                 if (d["degree"] === "Bachelors") {
                     x -= barWidth + barPadding / 2;
-                    fill = "steelblue";
+                    fill = colorCSBachelors;
                 } else {
                     x += barPadding / 2;
-                    fill = "orange";
+                    fill = colorCSMasters;
                 }
                 let y = salaryScaleCS(d["salary"]);
 
@@ -373,7 +373,7 @@
                 .attr("font-size", "12px")
                 .attr("x", 0)
                 .attr("y", 0)
-                .style("fill", "steelblue")
+                .style("fill", colorCSBachelors)
                 .text("CS Bachelors");
 
             legend2
@@ -383,10 +383,57 @@
                 .attr("font-size", "12px")
                 .attr("x", 0)
                 .attr("y", 20)
-                .style("fill", "orange")
+                .style("fill", colorCSMasters)
                 .text("CS Masters");
 
-            // ------ Chart 3, IS Bachelors vs. IS Masters vs. CS Bachelors vs. CS Masters ----
+            // ------ Chart 3: IS Bachelors vs. CS Bachelors
+            svg4.append("g")
+                .attr("class", "x axis")
+                .attr(
+                    "transform",
+                    "translate(" +
+                        margins.left +
+                        ", " +
+                        (margins.top + chartHeight) +
+                        ")"
+                )
+                .call(yearAxis);
+
+            svg4.append("g")
+                .attr("class", "y axis")
+                .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                )
+                .call(salaryAxisCSBachelors);
+
+            //create bars
+            dataBachelors.forEach((d, i) => {
+                let x = yearScale(new Date(d["classyear"], 0, 1));
+                let fill = "";
+                if (d["major"] === "CS") {
+                    x += barPadding / 2;
+                    fill = colorCSBachelors;
+                } else {
+                    x -= barWidth + barPadding / 2;
+                    fill = colorISBachelors;
+                }
+                let y = salaryScaleCSBachelors(d["salary"]);
+
+                let bar = chart4
+                    .append("rect")
+                    .attr("width", barWidth)
+                    .attr("height", chartHeight - y)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("year", d["classyear"])
+                    .attr("major", d["major"])
+                    .attr("degree", d["degree"])
+                    .style("fill", fill)
+                    .style("stroke", "none");
+            });
+
+            // ------ Chart 3, IS Masters vs. CS Masters ----
 
             svg3.append("g")
                 .attr("class", "x axis")
@@ -409,67 +456,19 @@
                 .call(salaryAxisCS);
 
             //create bars
-
             dataMasters.forEach((d, i) => {
                 let x = yearScale(new Date(d["classyear"], 0, 1));
                 let fill = "";
                 if (d["major"] === "CS") {
                     x += barPadding / 2;
-                    fill = "purple";
+                    fill = colorCSMasters;
                 } else {
                     x -= barWidth + barPadding / 2;
-                    fill = "green";
+                    fill = colorISMasters;
                 }
                 let y = salaryScaleCS(d["salary"]);
 
                 let bar = chart3
-                    .append("rect")
-                    .attr("width", barWidth)
-                    .attr("height", chartHeight - y)
-                    .attr("x", x)
-                    .attr("y", y)
-                    .attr("year", d["classyear"])
-                    .attr("major", d["major"])
-                    .attr("degree", d["degree"])
-                    .style("fill", fill)
-                    .style("stroke", "none");
-            });
-
-            // ------ Chart 4: IS Bachelors vs. CS Bachelors
-            svg4.append("g")
-                .attr("class", "x axis")
-                .attr(
-                    "transform",
-                    "translate(" +
-                        margins.left +
-                        ", " +
-                        (margins.top + chartHeight) +
-                        ")"
-                )
-                .call(yearAxis);
-
-            svg4.append("g")
-                .attr("class", "y axis")
-                .attr(
-                    "transform",
-                    "translate(" + margins.left + ", " + margins.top + ")"
-                )
-                .call(salaryAxisCSBachelors);
-            //create bars
-
-            dataBachelors.forEach((d, i) => {
-                let x = yearScale(new Date(d["classyear"], 0, 1));
-                let fill = "";
-                if (d["major"] === "CS") {
-                    x += barPadding / 2;
-                    fill = "purple";
-                } else {
-                    x -= barWidth + barPadding / 2;
-                    fill = "green";
-                }
-                let y = salaryScaleCSBachelors(d["salary"]);
-
-                let bar = chart4
                     .append("rect")
                     .attr("width", barWidth)
                     .attr("height", chartHeight - y)
