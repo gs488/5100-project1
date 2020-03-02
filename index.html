@@ -30,7 +30,6 @@
         chartDiv
             .append("h4")
             .text("Average Salary IS Bachelors vs. IS Masters");
-        // .style("text-align", "center");
 
         const svg1 = chartDiv
             .append("svg")
@@ -159,7 +158,7 @@
             const salaryMaxCSMasters = d3.max(dataCSMasters, d => {
                 return Math.max(d["salary"]);
             });
-//console.log(dataISMasters);
+
             // scales
             const yearScale = d3
                 .scaleTime()
@@ -268,38 +267,6 @@
                     .attr("degree", d["degree"])
                     .style("fill", fill)
                     .style("stroke", "none");
-
-                // Event listeners
-                bar.on("mouseover", function() {
-                    let currentRect = d3.select(this);
-                    d3.selectAll("#svg1 rect").each(function() {
-                        let rect = d3.select(this);
-                        if (
-                            rect.attr("year") != currentRect.attr("year") ||
-                            rect.attr("degree") != currentRect.attr("degree")
-                        ) {
-                            rect.transition()
-                                .duration(200)
-                                .attr("opacity", 0.5);
-                        }
-                    });
-
-                    salaryText
-                        .attr("x", x + barWidth / 2)
-                        .attr("y", y - 12)
-                        .text(d["salary"]);
-                });
-
-                bar.on("mouseout", function() {
-                    d3.selectAll("#svg1 rect")
-                        .transition()
-                        .duration(200)
-                        .attr("opacity", 1);
-                    salaryText
-                        .attr("x", 0)
-                        .attr("y", 0)
-                        .text("");
-                });
             });
 
             // add legend for char 1
@@ -320,23 +287,7 @@
                 .attr("x", 0)
                 .attr("y", 0)
                 .style("fill", "steelblue")
-                .text("IS Bachelors")
-                .on("mouseover", function() {
-                    d3.selectAll("#svg1 rect").each(function() {
-                        let rect = d3.select(this);
-                        if (rect.attr("degree") != "Bachelors") {
-                            rect.transition()
-                                .duration(200)
-                                .attr("opacity", 0.5);
-                        }
-                    });
-                })
-                .on("mouseout", function() {
-                    d3.selectAll("#svg1 rect")
-                        .transition()
-                        .duration(200)
-                        .attr("opacity", 1);
-                });
+                .text("IS Bachelors");
 
             legend
                 .append("text")
@@ -346,28 +297,13 @@
                 .attr("x", 0)
                 .attr("y", 20)
                 .style("fill", "orange")
-                .text("IS Masters")
-                .on("mouseover", function() {
-                    d3.selectAll("#svg1 rect").each(function() {
-                        let rect = d3.select(this);
-                        if (rect.attr("degree") != "Masters") {
-                            rect.transition()
-                                .duration(200)
-                                .attr("opacity", 0.5);
-                        }
-                    });
-                })
-                .on("mouseout", function() {
-                    d3.selectAll("#svg1 rect")
-                        .transition()
-                        .duration(200)
-                        .attr("opacity", 1);
-                });
+                .text("IS Masters");
 
             // ------ Chart 2, CS Bachelors vs. CS Masters ----
-            chartDiv.append("h4")
+            chartDiv
+                .append("h4")
                 .text("Average Salary CS Bachelors vs. CS Masters");
-            
+
             // create axises
             svg2.append("g")
                 .attr("class", "x axis")
@@ -393,32 +329,31 @@
             dataCS.forEach((d, i) => {
                 let x = yearScale(new Date(d["classyear"], 0, 1));
                 let fill = "";
-            if (d["degree"] === "Bachelors") {
-                x -= barWidth + barPadding / 2;
-                fill = "steelblue";
-            } else {
-                x += barPadding / 2;
-                fill = "orange";
-            }
-            let y = salaryScaleCS(d["salary"]);
+                if (d["degree"] === "Bachelors") {
+                    x -= barWidth + barPadding / 2;
+                    fill = "steelblue";
+                } else {
+                    x += barPadding / 2;
+                    fill = "orange";
+                }
+                let y = salaryScaleCS(d["salary"]);
 
-            let bar = chart2
-                .append("rect")
-                .attr("width", barWidth)
-                .attr("height", chartHeight - y)
-                .attr("x", x)
-                .attr("y", y)
-                .attr("year", d["classyear"])
-                .attr("major", d["major"])
-                .attr("degree", d["degree"])
-                .style("fill", fill)
-                .style("stroke", "none");
+                let bar = chart2
+                    .append("rect")
+                    .attr("width", barWidth)
+                    .attr("height", chartHeight - y)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("year", d["classyear"])
+                    .attr("major", d["major"])
+                    .attr("degree", d["degree"])
+                    .style("fill", fill)
+                    .style("stroke", "none");
             });
 
             // ------ Chart 3, IS Bachelors vs. IS Masters vs. CS Bachelors vs. CS Masters ----
 
             //GRACE WILL DO
-
 
             // ------ Chart 4: IS Bachelors vs. CS Bachelors
             svg4.append("g")
