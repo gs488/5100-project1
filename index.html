@@ -57,7 +57,7 @@
             .append("h4")
             .text("Average Salary CS Bachelors vs. CS Masters");
 
-        const svg2 = chartDiv //charDiv2?
+        const svg2 = chartDiv
             .append("svg")
             .attr("id", "svg2")
             .attr("width", String(width))
@@ -193,19 +193,14 @@
                 .domain([80000, 120000])
                 .range([chartHeight, 0]);
 
-            const salaryScaleCSBachelors = d3
-                .scaleLinear()
-                .domain([50000, salaryMaxCSBachelors])
-                .range([chartHeight, 0]);
-
             const salaryScaleBachelors = d3
                 .scaleLinear()
-                .domain([0, salaryMaxBachelors])
+                .domain([60000, 110000])
                 .range([chartHeight, 0]);
 
             const salaryScaleMasters = d3
                 .scaleLinear()
-                .domain([0, salaryMaxMasters])
+                .domain([80000, 120000])
                 .range([chartHeight, 0]);
 
             // Axises
@@ -218,8 +213,6 @@
             const salaryAxisIS = d3.axisLeft(salaryScaleIS).ticks(6);
 
             const salaryAxisCS = d3.axisLeft(salaryScaleCS);
-
-            const salaryAxisCSBachelors = d3.axisLeft(salaryScaleCSBachelors);
 
             const salaryAxisBachelors = d3.axisLeft(salaryScaleBachelors);
 
@@ -414,7 +407,7 @@
                     "transform",
                     "translate(" + margins.left + ", " + margins.top + ")"
                 )
-                .call(salaryAxisCSBachelors);
+                .call(salaryAxisBachelors);
 
             //create bars
             dataBachelors.forEach((d, i) => {
@@ -427,7 +420,7 @@
                     x -= barWidth + barPadding / 2;
                     fill = colorISBachelors;
                 }
-                let y = salaryScaleCSBachelors(d["salary"]);
+                let y = salaryScaleBachelors(d["salary"]);
 
                 let bar = chart3
                     .append("rect")
@@ -492,7 +485,7 @@
                     "transform",
                     "translate(" + margins.left + ", " + margins.top + ")"
                 )
-                .call(salaryAxisCS);
+                .call(salaryAxisMasters);
 
             //create bars
             dataMasters.forEach((d, i) => {
@@ -505,7 +498,7 @@
                     x -= barWidth + barPadding / 2;
                     fill = colorISMasters;
                 }
-                let y = salaryScaleCS(d["salary"]);
+                let y = salaryScaleMasters(d["salary"]);
 
                 let bar = chart4
                     .append("rect")
