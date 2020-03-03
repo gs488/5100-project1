@@ -120,7 +120,7 @@
             .attr("height", String(heightLarge));
 
         // chart 6
-        chartDiv6.append("h4").text("CS vs IS Enrollment");
+        chartDiv6.append("h4").text("CS vs IS Bachelors Enrollment");
 
         const svg6 = chartDiv6
             .append("svg")
@@ -365,6 +365,12 @@
                 .call(leftGridlinesLarge);
 
             // Axises
+            const dateAxis = d3
+                .axisBottom(dateScale)
+                .tickFormat(d3.timeFormat("%Y"))
+                .tickSize(5)
+                .tickPadding(10);
+
             const yearAxis = d3
                 .axisBottom(yearScale)
                 .tickFormat(d3.timeFormat("%Y"))
