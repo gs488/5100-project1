@@ -160,7 +160,13 @@
             .append("svg")
             .attr("id", "svg8")
             .attr("width", String(width))
-            .attr("height", String(height));
+            .attr("height", String(height))
+            .append("g")
+            .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                );
+            
 
         // chart 9
         chartDiv9.append("h4").text("Location Distribution CS Bachelors");
@@ -169,7 +175,11 @@
             .append("svg")
             .attr("id", "svg9")
             .attr("width", String(width))
-            .attr("height", String(height));
+            .attr("height", String(height))
+            .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                );
 
         // chart 10
         chartDiv10.append("h4").text("Location Distribution IS Masters");
@@ -178,7 +188,11 @@
             .append("svg")
             .attr("id", "svg10")
             .attr("width", String(width))
-            .attr("height", String(height));
+            .attr("height", String(height))
+            .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                );
 
         // chart 11
         chartDiv11.append("h4").text("Location Distribution CS Masters");
@@ -187,7 +201,11 @@
             .append("svg")
             .attr("id", "svg11")
             .attr("width", String(width))
-            .attr("height", String(height));
+            .attr("height", String(height))
+            .attr(
+                    "transform",
+                    "translate(" + margins.left + ", " + margins.top + ")"
+                );
 
         // retrieve JSON file
         d3.json("./salaries.json").then(data => {
@@ -279,27 +297,27 @@
                 1 - percentCSMastersNYC - percentCSMastersSF;
 
             const arrayISBachelors = [
-                { location: "nyc", percent: percentISBachelorsNYC },
-                { location: "sf", percent: percentISBachelorsSF },
-                { location: "other", percent: percentISBachelorsOther }
+                { location: "New York", percent: percentISBachelorsNYC },
+                { location: "San Francisco", percent: percentISBachelorsSF },
+                { location: "Other", percent: percentISBachelorsOther }
             ];
 
             const arrayCSBachelors = [
-                { location: "nyc", percent: percentCSBachelorsNYC },
-                { location: "sf", percent: percentCSBachelorsSF },
-                { location: "other", percent: percentCSBachelorsOther }
+                { location: "New York", percent: percentCSBachelorsNYC },
+                { location: "San Francisco", percent: percentCSBachelorsSF },
+                { location: "Other", percent: percentCSBachelorsOther }
             ];
 
             const arrayISMasters = [
-                { location: "nyc", percent: percentISMastersNYC },
-                { location: "sf", percent: percentISMastersSF },
-                { location: "other", percent: percentISMastersOther }
+                { location: "New York", percent: percentISMastersNYC },
+                { location: "San Francisco", percent: percentISMastersSF },
+                { location: "Other", percent: percentISMastersOther }
             ];
 
             const arrayCSMasters = [
-                { location: "nyc", percent: percentCSMastersNYC },
-                { location: "sf", percent: percentCSMastersSF },
-                { location: "other", percent: percentCSMastersOther }
+                { location: "New York", percent: percentCSMastersNYC },
+                { location: "San Francisco", percent: percentCSMastersSF },
+                { location: "Other", percent: percentCSMastersOther }
             ];
 
             // console.log(arrayISBachelors);
@@ -1209,86 +1227,139 @@
                 .text("CS Masters");
 
             // ------ Chart 8, Location Donut Chart ----
-            // var radius = Math.min(width, height) / 2
-
-            // var colorSlices = d3.scaleOrdinal()
-            //                 .domain(arrayISBachelors)
-            //                 .range(['#DA3C78', '#8E44AD', '#0287D0']);
-        
-            // var pie = d3.pie(arrayISBachelors)
-            //             .value(function(d){return d.percent;});
-
-            
-
-            // var data_ready = pie(d3.entries(arrayISBachelors));
-
-            // svg8.data(data_ready)
-            //     .enter()
-            //     .append("path")
-            //     .attr("d", d3.arc()
-            //         .innerRadius(100)
-            //         .outerRadius(radius)
-            //         )
-            //     .attr("fill", function(d){return(colorSlices(d.location))})
-            //     .append("title")
-            //     .text(d => `${d.location}: ${d.percent}`)
-            //     .attr("stroke", "light grey")
-            //     .style("stroke-width", "2px");
-
-
-
-
-            // var color = d3.scaleOrdinal(d3.schemeCategory10);     
-            
-            // var vis = svg8.data([arrayISBachelors]);
-            
-            // var arc = d3.arc()
-            //               .outerRadius(100);
-            // var pie = d3.pie(arrayISBachelors)
-            //             .value(function(d){return d.percent;});
-            
-            // var arcs = vis.selectAll("g.slice")
-            //               .data(pie)
-            //               .enter()
-            //               .append("g")
-            //               .attr("class", "slice");
-
-            // arcs.append("path")
-            //     .attr("fill", function(d,i){return color(i);})
-            //     .attr("d", arc);
-            
-            // arcs.append("text")
-            //     .attr("transform", function(d){
-            //         d.innerRadius = 0;
-            //         d.outerRadius = 100;
-            //         return "translate(" + arc.centroid(d) + ")";
-            //     })
-            //     .attr("text-anchor", "middle")
-            //     .text(function(d,i) { return arrayISBachelors[i].location});
-
-            console.log(arrayISBachelors);
-            
-            var g = svg8.append("g");
+            var g = svg8.append("g")
+                        .attr(
+                            "transform",
+                            "translate(" + chartWidth / 2 + ", " + chartHeight / 2 + ")"
+                        );
 
             var color = d3.scaleOrdinal(d3.schemeCategory10);  
 
-            var pie = d3.pie();
+            var pie = d3.pie().value(function(d){
+                return d.percent;
+            });
 
             var arc = d3.arc()
-                        .innerRadius(50)
-                        .outerRadius(Math.min(width,height)/2);
-            
+                        .innerRadius(100)
+                        .outerRadius(200);
+
             var arcs = g.selectAll("arc")
                         .data(pie(arrayISBachelors))
                         .enter()
                         .append("g")
                         .attr("class", "arc");
-            
+
             arcs.append("path")
                 .attr("fill", function(d,i){
                     return color(i);
                 })
                 .attr("d", arc);
+
+            arcs.append("text")
+                .text(d => `${d.data.location}: ${d.data.percent.toLocaleString()}`)
+                .style("text-anchor", "middle")
+                .attr("font-size", "14px")
+                .attr("transform", d => `translate(${arc.centroid(d)})`);
+
+                
+            // ------ Chart 9, Location Donut Chart ----
+            var g = svg9.append("g")
+                        .attr(
+                            "transform",
+                            "translate(" + chartWidth / 2 + ", " + chartHeight / 2 + ")"
+                        );
+
+            var pie2 = d3.pie().value(function(d){
+                return d.percent;
+            });
+
+            var arc2 = d3.arc()
+                        .innerRadius(100)
+                        .outerRadius(200);
+
+            var arcs2 = g.selectAll("arc")
+                        .data(pie2(arrayCSBachelors))
+                        .enter()
+                        .append("g")
+                        .attr("class", "arc");
+
+            arcs2.append("path")
+                .attr("fill", function(d,i){
+                    return color(i);
+                })
+                .attr("d", arc2);
+
+            arcs2.append("text")
+                .text(d => `${d.data.location}: ${d.data.percent.toLocaleString()}`)
+                .style("text-anchor", "middle")
+                .attr("font-size", "14px")
+                .attr("transform", d => `translate(${arc.centroid(d)})`);
+
+            // ------ Chart 10, Location Donut Chart ----
+            var g = svg10.append("g")
+                        .attr(
+                            "transform",
+                            "translate(" + chartWidth / 2 + ", " + chartHeight / 2 + ")"
+                        );
+
+            var pie3 = d3.pie().value(function(d){
+                return d.percent;
+            });
+
+            var arc3 = d3.arc()
+                        .innerRadius(100)
+                        .outerRadius(200);
+
+            var arcs3 = g.selectAll("arc")
+                        .data(pie3(arrayISMasters))
+                        .enter()
+                        .append("g")
+                        .attr("class", "arc");
+
+            arcs3.append("path")
+                .attr("fill", function(d,i){
+                    return color(i);
+                })
+                .attr("d", arc3);
+            
+            arcs3.append("text")
+                .text(d => `${d.data.location}: ${d.data.percent.toLocaleString()}`)
+                .style("text-anchor", "middle")
+                .attr("font-size", "14px")
+                .attr("transform", d => `translate(${arc.centroid(d)})`);
+
+            // ------ Chart 11, Location Donut Chart ----
+            var g = svg11.append("g")
+                        .attr(
+                            "transform",
+                            "translate(" + chartWidth / 2 + ", " + chartHeight / 2 + ")"
+                        );
+
+            var pie4 = d3.pie().value(function(d){
+                return d.percent;
+            });
+
+            var arc4 = d3.arc()
+                        .innerRadius(100)
+                        .outerRadius(200);
+
+            var arcs4 = g.selectAll("arc")
+                        .data(pie4(arrayCSMasters))
+                        .enter()
+                        .append("g")
+                        .attr("class", "arc");
+
+            arcs4.append("path")
+                .attr("fill", function(d,i){
+                    return color(i);
+                })
+                .attr("d", arc4);
+
+            arcs4.append("text")
+                .text(d => `${d.data.location}: ${d.data.percent.toLocaleString()}`)
+                .style("text-anchor", "middle")
+                .attr("font-size", "14px")
+                .attr("transform", d => `translate(${arc.centroid(d)})`);
 
         });
     </script>
