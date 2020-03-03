@@ -124,7 +124,7 @@
         chartDiv6
             .append("h4")
             .attr("class", "chartTitle")
-            .text("CS vs IS Bachelors Enrollment");
+            .text("IS vs CS Bachelors Enrollment");
 
         const svg6 = chartDiv6
             .append("svg")
@@ -136,7 +136,7 @@
         chartDiv7
             .append("h4")
             .attr("class", "chartTitle")
-            .text("CS vs IS Masters Enrollment");
+            .text("IS vs CS Masters Enrollment");
 
         const svg7 = chartDiv7
             .append("svg")
@@ -352,25 +352,30 @@
 
             const salaryScaleMasters = salaryScale;
 
-            const bachelorsEnrollmentScale = d3
+            const enrollmentScale = d3
                 .scaleLinear()
                 .domain([0, 250])
                 .range([chartHeight, 0]);
 
-            const mastersEnrollmentScale = d3
-                .scaleLinear()
-                .domain([0, 250])
-                .range([chartHeight, 0]);
+            const bachelorsEnrollmentScale = enrollmentScale;
+
+            const mastersEnrollmentScale = enrollmentScale;
 
             // Gridlines
-            let leftGridlines = d3
+            let salaryGridlines = d3
                 .axisLeft(salaryScale)
                 .tickSize(-chartWidth)
                 .tickFormat("");
 
-            let leftGridlinesLarge = d3
+            let salaryGridlinesLarge = d3
                 .axisLeft(salaryScaleAllData)
                 .tickSize(-chartWidthLarge)
+                .tickFormat("");
+
+            let enrollmentGridlines = d3
+                .axisLeft(enrollmentScale)
+                .tickSize(-chartWidth)
+                .ticks(5)
                 .tickFormat("");
 
             svg1.append("g")
@@ -379,7 +384,7 @@
                     "transform",
                     "translate(" + margins.left + "," + margins.top + ")"
                 )
-                .call(leftGridlines);
+                .call(salaryGridlines);
 
             svg2.append("g")
                 .attr("class", "y gridlines")
@@ -387,7 +392,7 @@
                     "transform",
                     "translate(" + margins.left + "," + margins.top + ")"
                 )
-                .call(leftGridlines);
+                .call(salaryGridlines);
 
             svg3.append("g")
                 .attr("class", "y gridlines")
@@ -395,7 +400,7 @@
                     "transform",
                     "translate(" + margins.left + "," + margins.top + ")"
                 )
-                .call(leftGridlines);
+                .call(salaryGridlines);
 
             svg4.append("g")
                 .attr("class", "y gridlines")
@@ -403,7 +408,7 @@
                     "transform",
                     "translate(" + margins.left + "," + margins.top + ")"
                 )
-                .call(leftGridlines);
+                .call(salaryGridlines);
 
             svg5.append("g")
                 .attr("class", "y gridlines")
@@ -411,7 +416,23 @@
                     "transform",
                     "translate(" + margins.left + "," + margins.top + ")"
                 )
-                .call(leftGridlinesLarge);
+                .call(salaryGridlinesLarge);
+
+            svg6.append("g")
+                .attr("class", "y gridlines")
+                .attr(
+                    "transform",
+                    "translate(" + margins.left + "," + margins.top + ")"
+                )
+                .call(enrollmentGridlines);
+
+            svg7.append("g")
+                .attr("class", "y gridlines")
+                .attr(
+                    "transform",
+                    "translate(" + margins.left + "," + margins.top + ")"
+                )
+                .call(enrollmentGridlines);
 
             // Axises
             const dateAxis = d3
@@ -444,11 +465,11 @@
 
             const salaryAxisAllData = d3.axisLeft(salaryScaleAllData).ticks(6);
 
-            const bachelorsEnrollmentAxis = d3.axisLeft(
-                bachelorsEnrollmentScale
-            );
+            const enrollmentAxis = d3.axisLeft(enrollmentScale).ticks(5);
 
-            const mastersEnrollmentAxis = d3.axisLeft(mastersEnrollmentScale);
+            const bachelorsEnrollmentAxis = enrollmentAxis;
+
+            const mastersEnrollmentAxis = enrollmentAxis;
 
             // salary text on bar
             let salaryText = svg1
@@ -954,7 +975,7 @@
                 .style("fill", colorCSMasters)
                 .text("CS Masters");
 
-            // ------ Chart 6, CS vs IS bachelors enrollment line graph ----
+            // ------ Chart 6, IS vs CS bachelors enrollment line graph ----
 
             svg6.append("g")
                 .attr("class", "x axis")
@@ -1048,7 +1069,7 @@
                 .style("fill", colorCSBachelors)
                 .text("CS Bachelors");
 
-            // ------ Chart 7, CS vs IS masters enrollment line graph ----
+            // ------ Chart 7, IS vs CS masters enrollment line graph ----
 
             svg7.append("g")
                 .attr("class", "x axis")
