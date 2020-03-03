@@ -1226,7 +1226,9 @@
                 .style("fill", colorCSMasters)
                 .text("CS Masters");
 
-            // ------ Chart 8, Location Donut Chart ----
+            // ------ Chart 8, Location Donut Chart IS Bachelors ----
+            var innerR = 100, outerR = 200;
+
             var g = svg8.append("g")
                         .attr(
                             "transform",
@@ -1240,8 +1242,8 @@
             });
 
             var arc = d3.arc()
-                        .innerRadius(100)
-                        .outerRadius(200);
+                        .innerRadius(innerR)
+                        .outerRadius(outerR);
 
             var arcs = g.selectAll("arc")
                         .data(pie(arrayISBachelors))
@@ -1262,7 +1264,7 @@
                 .attr("transform", d => `translate(${arc.centroid(d)})`);
 
                 
-            // ------ Chart 9, Location Donut Chart ----
+            // ------ Chart 9, Location Donut Chart CS Bachelors ----
             var g = svg9.append("g")
                         .attr(
                             "transform",
@@ -1274,8 +1276,8 @@
             });
 
             var arc2 = d3.arc()
-                        .innerRadius(100)
-                        .outerRadius(200);
+                        .innerRadius(innerR)
+                        .outerRadius(outerR);
 
             var arcs2 = g.selectAll("arc")
                         .data(pie2(arrayCSBachelors))
@@ -1295,7 +1297,7 @@
                 .attr("font-size", "14px")
                 .attr("transform", d => `translate(${arc.centroid(d)})`);
 
-            // ------ Chart 10, Location Donut Chart ----
+            // ------ Chart 10, Location Donut Chart IS Masters ----
             var g = svg10.append("g")
                         .attr(
                             "transform",
@@ -1307,8 +1309,8 @@
             });
 
             var arc3 = d3.arc()
-                        .innerRadius(100)
-                        .outerRadius(200);
+                        .innerRadius(innerR)
+                        .outerRadius(outerR);
 
             var arcs3 = g.selectAll("arc")
                         .data(pie3(arrayISMasters))
@@ -1328,7 +1330,7 @@
                 .attr("font-size", "14px")
                 .attr("transform", d => `translate(${arc.centroid(d)})`);
 
-            // ------ Chart 11, Location Donut Chart ----
+            // ------ Chart 11, Location Donut Chart CS Masters ----
             var g = svg11.append("g")
                         .attr(
                             "transform",
@@ -1340,8 +1342,8 @@
             });
 
             var arc4 = d3.arc()
-                        .innerRadius(100)
-                        .outerRadius(200);
+                        .innerRadius(innerR)
+                        .outerRadius(outerR);
 
             var arcs4 = g.selectAll("arc")
                         .data(pie4(arrayCSMasters))
