@@ -104,7 +104,6 @@
             .attr("height", String(height));
 
         // chart 4
-
         chartDiv4
             .append("h4")
             .attr("class", "chartTitle")
@@ -131,7 +130,10 @@
             .attr("height", String(heightLarge));
 
         // chart 6
-        chartDiv6.append("h4").text("CS vs IS Bachelors Enrollment");
+        chartDiv6
+            .append("h4")
+            .attr("class", "chartTitle")
+            .text("CS vs IS Bachelors Enrollment");
 
         const svg6 = chartDiv6
             .append("svg")
@@ -140,7 +142,10 @@
             .attr("height", String(height));
 
         // chart 7
-        chartDiv7.append("h4").text("CS vs IS Masters Enrollment");
+        chartDiv7
+            .append("h4")
+            .attr("class", "chartTitle")
+            .text("CS vs IS Masters Enrollment");
 
         const svg7 = chartDiv7
             .append("svg")
@@ -273,6 +278,35 @@
             const percentCSMastersOther =
                 1 - percentCSMastersNYC - percentCSMastersSF;
 
+            const arrayISBachelors = [
+                { location: "nyc", percent: percentISBachelorsNYC },
+                { location: "sf", percent: percentISBachelorsSF },
+                { location: "other", percent: percentISBachelorsOther }
+            ];
+
+            const arrayCSBachelors = [
+                { location: "nyc", percent: percentCSBachelorsNYC },
+                { location: "sf", percent: percentCSBachelorsSF },
+                { location: "other", percent: percentCSBachelorsOther }
+            ];
+
+            const arrayISMasters = [
+                { location: "nyc", percent: percentISMastersNYC },
+                { location: "sf", percent: percentISMastersSF },
+                { location: "other", percent: percentISMastersOther }
+            ];
+
+            const arrayCSMasters = [
+                { location: "nyc", percent: percentCSMastersNYC },
+                { location: "sf", percent: percentCSMastersSF },
+                { location: "other", percent: percentCSMastersOther }
+            ];
+
+            // console.log(arrayISBachelors);
+            // console.log(arrayCSMasters);
+            // console.log(arrayISBachelors);
+            // console.log(arrayCSMasters);
+
             // just console.log() to see the percentages
             // console.log(percentISBachelorsNYC);
             // console.log(percentISBachelorsSF);
@@ -327,14 +361,13 @@
                 return Math.max(d["salary"]);
             });
 
-            const dateExtent = d3.extent(data, d => d["classyear"]);
+            // const dateExtent = d3.extent(data, d => d["classyear"]);
 
             // scales
-
             const dateScale = d3
                 .scaleTime()
-                .domain(dateExtent)
-                .range([0,chartWidth]);
+                .domain([new Date(2012, 0, 1), new Date(2018, 0, 1)])
+                .range([0, chartWidth]);
 
             const yearScale = d3
                 .scaleTime()
@@ -371,7 +404,7 @@
 
             const mastersEnrollmentScale = d3
                 .scaleLinear()
-                .domain([0, 200])
+                .domain([0, 250])
                 .range([chartHeight, 0]);
 
             // Gridlines
@@ -456,7 +489,9 @@
 
             const salaryAxisAllData = d3.axisLeft(salaryScaleAllData).ticks(6);
 
-            const bachelorsEnrollmentAxis = d3.axisLeft(bachelorsEnrollmentScale);
+            const bachelorsEnrollmentAxis = d3.axisLeft(
+                bachelorsEnrollmentScale
+            );
 
             const mastersEnrollmentAxis = d3.axisLeft(mastersEnrollmentScale);
 
@@ -976,7 +1011,7 @@
                         (margins.top + chartHeight) +
                         ")"
                 )
-                .call(yearAxis);
+                .call(dateAxis);
 
             svg6.append("g")
                 .attr("class", "y axis")
@@ -986,72 +1021,56 @@
                 )
                 .call(bachelorsEnrollmentAxis);
 
-            var lineGen = d3.line()
-                .x( d => dateScale(d["classyear"]) )
-                .y( d => bachelorsEnrollmentScale(d["total"]) )
+            var lineGen = d3
+                .line()
+                .x(d => dateScale(new Date(d["classyear"], 0, 1)))
+                .y(d => bachelorsEnrollmentScale(d["total"]))
                 .curve(d3.curveMonotoneX);
 
-            chart6.append("path")
+            chart6
+                .append("path")
                 .datum(dataISBachelors)
                 .attr("class", "line")
                 .attr("fill", "none")
                 .attr("stroke", colorISBachelors)
-                .attr("stroke-width",3)
+                .attr("stroke-width", 3)
                 .attr("d", lineGen);
 
             dataISBachelors.forEach((d, i) => {
                 let circle = chart6
-                                .append("circle")
-                                .attr("r",3)
-                                .attr("fill", colorISBachelors)
-                                .attr("cx", dateScale(d["classyear"]) )
-                                .attr("cy", bachelorsEnrollmentScale(d["total"]) );
+                    .append("circle")
+                    .attr("r", 3)
+                    .attr("fill", colorISBachelors)
+                    .attr("cx", dateScale(new Date(d["classyear"], 0, 1)))
+                    .attr("cy", bachelorsEnrollmentScale(d["total"]));
             });
 
-/*
-            chart6.selectAll("circle")
-                .data(dataISBachelors)
-                .join("circle")
-                .attr("r", 3)
-                .attr("fill", colorISBachelors)
-                .attr("cx", d => dateScale(d["classyear"]) )
-                .attr("cy", d => bachelorsEnrollmentScale(d["total"]) );
-*/
-            chart6.append("path")
+            chart6
+                .append("path")
                 .datum(dataCSBachelors)
                 .attr("class", "line")
                 .attr("fill", "none")
                 .attr("stroke", colorCSBachelors)
-                .attr("stroke-width",3)
+                .attr("stroke-width", 3)
                 .attr("d", lineGen);
 
             dataCSBachelors.forEach((d, i) => {
                 let circle = chart6
-                                .append("circle")
-                                .attr("r",3)
-                                .attr("fill", colorCSBachelors)
-                                .attr("cx", dateScale(d["classyear"]) )
-                                .attr("cy", bachelorsEnrollmentScale(d["total"]) );
+                    .append("circle")
+                    .attr("r", 3)
+                    .attr("fill", colorCSBachelors)
+                    .attr("cx", dateScale(new Date(d["classyear"], 0, 1)))
+                    .attr("cy", bachelorsEnrollmentScale(d["total"]));
             });
-
-/*
-            chart6.selectAll("circle")
-                .data(dataCSBachelors)
-                .join("circle")
-                .attr("r", 3)
-                .attr("fill", colorCSBachelors)
-                .attr("cx", d => dateScale(d["classyear"]) )
-                .attr("cy", d => bachelorsEnrollmentScale(d["total"]) );
-*/
 
             // add legend for chart 6
             let legend6 = svg6
                 .append("g")
-                .attr("id", "legend6")
+                .attr("id", "legend3")
                 .attr("class", "legend")
                 .attr(
                     "transform",
-                    "translate(" + legendXLarge + "," + legendYLarge + ")"
+                    "translate(" + legendX + "," + legendY + ")"
                 );
 
             legend6
@@ -1069,11 +1088,10 @@
                 .attr("text-anchor", "start")
                 .attr("alignment-baseline", "hanging")
                 .attr("font-size", "12px")
-                .attr("x", legendPadding * 2)
+                .attr("x", legendPadding)
                 .attr("y", 0)
                 .style("fill", colorCSBachelors)
                 .text("CS Bachelors");
-
 
             // ------ Chart 7, CS vs IS masters enrollment line graph ----
 
@@ -1087,7 +1105,7 @@
                         (margins.top + chartHeight) +
                         ")"
                 )
-                .call(yearAxis);
+                .call(dateAxis);
 
             svg7.append("g")
                 .attr("class", "y axis")
@@ -1097,54 +1115,67 @@
                 )
                 .call(mastersEnrollmentAxis);
 
-            var lineGen = d3.line()
-                .x( d => dateScale(d["classyear"]) )
-                .y( d => mastersEnrollmentScale(d["total"]) )
+            var lineGen = d3
+                .line()
+                .x(d => dateScale(new Date(d["classyear"], 0, 1)))
+                .y(d => mastersEnrollmentScale(d["total"]))
                 .curve(d3.curveMonotoneX);
 
-            chart7.append("path")
+            chart7
+                .append("path")
                 .datum(dataISMasters)
                 .attr("class", "line")
                 .attr("fill", "none")
                 .attr("stroke", colorISMasters)
-                .attr("stroke-width",3)
+                .attr("stroke-width", 3)
                 .attr("d", lineGen);
 
             dataISMasters.forEach((d, i) => {
                 let circle = chart7
-                                .append("circle")
-                                .attr("r",3)
-                                .attr("fill", colorISMasters)
-                                .attr("cx", dateScale(d["classyear"]) )
-                                .attr("cy", mastersEnrollmentScale(d["total"]) );
+                    .append("circle")
+                    .attr("r", 3)
+                    .attr("fill", colorISMasters)
+                    .attr("cx", dateScale(new Date(d["classyear"], 0, 1)))
+                    .attr("cy", mastersEnrollmentScale(d["total"]));
             });
 
-            chart7.append("path")
+            chart7
+                .append("path")
                 .datum(dataCSMasters)
                 .attr("class", "line")
                 .attr("fill", "none")
                 .attr("stroke", colorCSMasters)
-                .attr("stroke-width",3)
+                .attr("stroke-width", 3)
                 .attr("d", lineGen);
 
             dataCSMasters.forEach((d, i) => {
                 let circle = chart7
-                                .append("circle")
-                                .attr("r",3)
-                                .attr("fill", colorCSMasters)
-                                .attr("cx", dateScale(d["classyear"]) )
-                                .attr("cy", mastersEnrollmentScale(d["total"]) );
+                    .append("circle")
+                    .attr("r", 3)
+                    .attr("fill", colorCSMasters)
+                    .attr("cx", dateScale(new Date(d["classyear"], 0, 1)))
+                    .attr("cy", mastersEnrollmentScale(d["total"]));
             });
 
             // add legend for chart 7
             let legend7 = svg7
                 .append("g")
-                .attr("id", "legend7")
+                .attr("id", "legend4")
                 .attr("class", "legend")
                 .attr(
                     "transform",
-                    "translate(" + legendXLarge + "," + legendYLarge + ")"
+                    "translate(" + legendX + "," + legendY + ")"
                 );
+
+            legend7
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 0)
+                .style("fill", colorISMasters)
+                .text("IS Masters");
 
             legend7
                 .append("text")
@@ -1153,19 +1184,9 @@
                 .attr("font-size", "12px")
                 .attr("x", legendPadding)
                 .attr("y", 0)
-                .style("fill", colorISMasters)
-                .text("IS Masters");
-
-
-            legend7
-                .append("text")
-                .attr("text-anchor", "start")
-                .attr("alignment-baseline", "hanging")
-                .attr("font-size", "12px")
-                .attr("x", legendPadding * 3)
-                .attr("y", 0)
                 .style("fill", colorCSMasters)
                 .text("CS Masters");
+<<<<<<< HEAD
 
             // ------ Chart 8, Location Donut Chart ----
             var radius = Math.min(width, height) / 2;
@@ -1192,6 +1213,8 @@
 
 
 
+=======
+>>>>>>> 2261bb7a0f062a4f9a0eae47a10ac73367c627f2
         });
     </script>
 </body>
