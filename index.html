@@ -8,22 +8,33 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h3>
+    <h3 class="pageTitle">
         INFO 3300 Project 1 <br />
         Grace Song gs488, Zhongkai Liu zl777, Jerry Xu lx46
     </h3>
 
-    <div class="chartDiv enrollmentChart" id="chartDiv6"></div>
-    <div class="chartDiv enrollmentChart" id="chartDiv7"></div>
-    <div class="chartDiv locationChart" id="chartDiv8"></div>
-    <div class="chartDiv locationChart" id="chartDiv9"></div>
-    <div class="chartDiv locationChart" id="chartDiv10"></div>
-    <div class="chartDiv locationChart" id="chartDiv11"></div>
-    <div class="chartDiv salaryChart" id="chartDiv5"></div>
-    <div class="chartDiv salaryChart" id="chartDiv1"></div>
-    <div class="chartDiv salaryChart" id="chartDiv2"></div>
-    <div class="chartDiv salaryChart" id="chartDiv3"></div>
-    <div class="chartDiv salaryChart" id="chartDiv4"></div>
+    <div class="section enrollmentSection">
+        <h3 class="chartTitle">Enrollments</h3>
+        <div class="chartDiv enrollmentChart" id="chartDiv6"></div>
+        <div class="chartDiv enrollmentChart" id="chartDiv7"></div>
+    </div>
+
+    <div class="section locationSection">
+        <h3 class="chartTitle">Location Distribution</h3>
+        <div class="chartDiv locationChart" id="chartDiv8"></div>
+        <div class="chartDiv locationChart" id="chartDiv9"></div>
+        <div class="chartDiv locationChart" id="chartDiv10"></div>
+        <div class="chartDiv locationChart" id="chartDiv11"></div>
+    </div>
+
+    <div class="section salarySection">
+        <h3 class="chartTitle">Average Salaries</h3>
+        <div class="chartDiv salaryChart" id="chartDiv5"></div>
+        <div class="chartDiv salaryChart" id="chartDiv1"></div>
+        <div class="chartDiv salaryChart" id="chartDiv2"></div>
+        <div class="chartDiv salaryChart" id="chartDiv3"></div>
+        <div class="chartDiv salaryChart" id="chartDiv4"></div>
+    </div>
 
     <script>
         // svg setup
@@ -71,7 +82,7 @@
         chartDiv1
             .append("h4")
             .attr("class", "chartTitle")
-            .text("Average Salary IS Bachelors vs. IS Masters");
+            .text(" IS Bachelors vs. IS Masters");
 
         const svg1 = chartDiv1
             .append("svg")
@@ -83,7 +94,7 @@
         chartDiv2
             .append("h4")
             .attr("class", "chartTitle")
-            .text("Average Salary CS Bachelors vs. CS Masters");
+            .text(" CS Bachelors vs. CS Masters");
 
         const svg2 = chartDiv2
             .append("svg")
@@ -95,7 +106,7 @@
         chartDiv3
             .append("h4")
             .attr("class", "chartTitle")
-            .text("Average Salary IS Bachelors vs. CS Bachelors");
+            .text(" IS Bachelors vs. CS Bachelors");
 
         const svg3 = chartDiv3
             .append("svg")
@@ -107,7 +118,7 @@
         chartDiv4
             .append("h4")
             .attr("class", "chartTitle")
-            .text("Average Salary IS Masters vs. CS Masters");
+            .text(" IS Masters vs. CS Masters");
 
         const svg4 = chartDiv4
             .append("svg")
@@ -119,9 +130,7 @@
         chartDiv5
             .append("h4")
             .attr("class", "chartTitle")
-            .text(
-                "Average Salary IS Bachelors, IS Masters, CS Bachelors, and CS Masters"
-            );
+            .text("IS Bachelors & IS Masters & CS Bachelors & CS Masters");
 
         const svg5 = chartDiv5
             .append("svg")
@@ -156,7 +165,7 @@
         // chart 8
         chartDiv8
             .append("h4")
-            .text("Location Distribution IS Bachelors")
+            .text("IS Bachelors")
             .attr("class", "chartTitle");
 
         const svg8 = chartDiv8
@@ -168,7 +177,7 @@
         // chart 9
         chartDiv9
             .append("h4")
-            .text("Location Distribution CS Bachelors")
+            .text("CS Bachelors")
             .attr("class", "chartTitle");
 
         const svg9 = chartDiv9
@@ -180,7 +189,7 @@
         // chart 10
         chartDiv10
             .append("h4")
-            .text("Location Distribution IS Masters")
+            .text("IS Masters")
             .attr("class", "chartTitle");
 
         const svg10 = chartDiv10
@@ -192,7 +201,7 @@
         // chart 11
         chartDiv11
             .append("h4")
-            .text("Location Distribution CS Masters")
+            .text("CS Masters")
             .attr("class", "chartTitle");
 
         const svg11 = chartDiv11
