@@ -233,6 +233,35 @@
             const percentCSMastersOther =
                 1 - percentCSMastersNYC - percentCSMastersSF;
 
+            const arrayISBachelors = [
+                { location: "nyc", percent: percentISBachelorsNYC },
+                { location: "sf", percent: percentISBachelorsSF },
+                { location: "other", percent: percentISBachelorsOther }
+            ];
+
+            const arrayCSBachelors = [
+                { location: "nyc", percent: percentCSBachelorsNYC },
+                { location: "sf", percent: percentCSBachelorsSF },
+                { location: "other", percent: percentCSBachelorsOther }
+            ];
+
+            const arrayISMasters = [
+                { location: "nyc", percent: percentISMastersNYC },
+                { location: "sf", percent: percentISMastersSF },
+                { location: "other", percent: percentISMastersOther }
+            ];
+
+            const arrayCSMasters = [
+                { location: "nyc", percent: percentCSMastersNYC },
+                { location: "sf", percent: percentCSMastersSF },
+                { location: "other", percent: percentCSMastersOther }
+            ];
+
+            // console.log(arrayISBachelors);
+            // console.log(arrayCSMasters);
+            // console.log(arrayISBachelors);
+            // console.log(arrayCSMasters);
+
             // just console.log() to see the percentages
             // console.log(percentISBachelorsNYC);
             // console.log(percentISBachelorsSF);
@@ -287,9 +316,8 @@
                 return Math.max(d["salary"]);
             });
 
-            const dateExtent = d3.extent(data, d => d["classyear"]);
+            // const dateExtent = d3.extent(data, d => d["classyear"]);
 
-            console.log(dateExtent);
             // scales
             const dateScale = d3
                 .scaleTime()
