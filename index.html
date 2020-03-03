@@ -1231,7 +1231,7 @@
                     "translate(" + width / 2 + ", " + height / 2 + ")"
                 );
 
-            let color = d3.scaleOrdinal(d3.schemeCategory10);
+            let color = d3.scaleOrdinal(["#eb9934", "#3474eb", "lightgrey"]);
 
             let pie1 = d3.pie().value(function(d) {
                 return d.percent;
@@ -1260,11 +1260,29 @@
                 .append("text")
                 .text(
                     d =>
-                        `${d.data.location}: ${d.data.percent.toLocaleString()}`
+                        `${d.data.location}`
                 )
                 .style("text-anchor", "middle")
+                .attr("font-weight", "bold")
                 .attr("font-size", "14px")
                 .attr("transform", d => `translate(${arc1.centroid(d)})`);
+            
+            arcs1
+                .append("text")
+                .text(
+                    d =>
+                        `${d.data.percent.toLocaleString()}`
+                )
+                .style("text-anchor", "middle")
+                .attr("font-weight", "bold")
+                .attr("font-size", "14px")
+                .attr("transform", d => {
+                    console.log(arc1.centroid(d));
+                    let x = arc1.centroid(d)[0];
+                    let y = arc1.centroid(d)[1] + 20;
+                    return "translate(" + x + ", " + y + ")";
+                    });
+
 
             // ------ Chart 9, Location Donut Chart CS Bachelors ----
             let donut2 = svg9
@@ -1301,12 +1319,28 @@
                 .append("text")
                 .text(
                     d =>
-                        `${d.data.location} :
-                        ${d.data.percent.toLocaleString()}`
+                        `${d.data.location}`
                 )
                 .style("text-anchor", "middle")
+                .attr("font-weight", "bold")
                 .attr("font-size", "14px")
                 .attr("transform", d => `translate(${arc2.centroid(d)})`);
+            
+            arcs2
+                .append("text")
+                .text(
+                    d =>
+                        `${d.data.percent.toLocaleString()}`
+                )
+                .style("text-anchor", "middle")
+                .attr("font-weight", "bold")
+                .attr("font-size", "14px")
+                .attr("transform", d => {
+                    console.log(arc2.centroid(d));
+                    let x = arc2.centroid(d)[0];
+                    let y = arc2.centroid(d)[1] + 20;
+                    return "translate(" + x + ", " + y + ")";
+                    });
 
             // ------ Chart 10, Location Donut Chart IS Masters ----
             let donut3 = svg10
@@ -1343,11 +1377,28 @@
                 .append("text")
                 .text(
                     d =>
-                        `${d.data.location}: ${d.data.percent.toLocaleString()}`
+                        `${d.data.location}`
                 )
                 .style("text-anchor", "middle")
+                .attr("font-weight", "bold")
                 .attr("font-size", "14px")
                 .attr("transform", d => `translate(${arc3.centroid(d)})`);
+            
+            arcs3
+                .append("text")
+                .text(
+                    d =>
+                        `${d.data.percent.toLocaleString()}`
+                )
+                .style("text-anchor", "middle")
+                .attr("font-weight", "bold")
+                .attr("font-size", "14px")
+                .attr("transform", d => {
+                    console.log(arc3.centroid(d));
+                    let x = arc3.centroid(d)[0];
+                    let y = arc3.centroid(d)[1] + 20;
+                    return "translate(" + x + ", " + y + ")";
+                    });
 
             // ------ Chart 11, Location Donut Chart CS Masters ----
             let donut4 = svg11
@@ -1384,11 +1435,28 @@
                 .append("text")
                 .text(
                     d =>
-                        `${d.data.location}: ${d.data.percent.toLocaleString()}`
+                        `${d.data.location}`
                 )
                 .style("text-anchor", "middle")
+                .attr("font-weight", "bold")
                 .attr("font-size", "14px")
                 .attr("transform", d => `translate(${arc4.centroid(d)})`);
+            
+            arcs4
+                .append("text")
+                .text(
+                    d =>
+                        `${d.data.percent.toLocaleString()}`
+                )
+                .style("text-anchor", "middle")
+                .attr("font-weight", "bold")
+                .attr("font-size", "14px")
+                .attr("transform", d => {
+                    console.log(arc4.centroid(d));
+                    let x = arc4.centroid(d)[0];
+                    let y = arc4.centroid(d)[1] + 20;
+                    return "translate(" + x + ", " + y + ")";
+                    });
         });
     </script>
 </body>
