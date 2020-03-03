@@ -66,7 +66,6 @@
         const chartDiv10 = d3.select("#chartDiv10");
         const chartDiv11 = d3.select("#chartDiv11");
 
-
         // chart 1
         chartDiv1
             .append("h4")
@@ -161,7 +160,7 @@
             .attr("id", "svg8")
             .attr("width", String(width))
             .attr("height", String(height));
-        
+
         // chart 9
         chartDiv9.append("h4").text("Location Distribution CS Bachelors");
 
@@ -1207,35 +1206,34 @@
                 .attr("y", 0)
                 .style("fill", colorCSMasters)
                 .text("CS Masters");
-<<<<<<< HEAD
 
             // ------ Chart 8, Location Donut Chart ----
             var radius = Math.min(width, height) / 2;
-            
-            var pie = d3.pie()
-                        .value(function(d){return d.value;});
+
+            var pie = d3.pie().value(function(d) {
+                return d.value;
+            });
             var data_ready = pie(d3.entries(data));
 
             svg8.data(data_ready)
                 .enter()
                 .append("path")
-                .attr("d", de.arc()
-                    .innerRadius(100)
-                    .outerRadius(radius)
-                    )
-                .attr("fill", function(d){return(color(d.data.key))})
+                .attr(
+                    "d",
+                    de
+                        .arc()
+                        .innerRadius(100)
+                        .outerRadius(radius)
+                )
+                .attr("fill", function(d) {
+                    return color(d.data.key);
+                })
                 .append("title")
-                .text(d => `${d.data.name}: ${d.data.value,toLocaleString()}`)
+                .text(
+                    d => `${d.data.name}: ${(d.data.value, toLocaleString())}`
+                )
                 .attr("stroke", "light grey")
                 .style("stroke-width", "2px");
-
-
-            
-
-
-
-=======
->>>>>>> 2261bb7a0f062a4f9a0eae47a10ac73367c627f2
         });
     </script>
 </body>
