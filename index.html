@@ -1234,33 +1234,61 @@
             //     .text(d => `${d.location}: ${d.percent}`)
             //     .attr("stroke", "light grey")
             //     .style("stroke-width", "2px");
-            var color = d3.scaleOrdinal(d3.schemeCategory10);     
-            
-            var vis = svg8.data([arrayISBachelors]);
-            
-            var arc = d3.arc()
-                          .outerRadius(100);
-            var pie = d3.pie(arrayISBachelors)
-                        .value(function(d){return d.percent;});
-            
-            var arcs = vis.selectAll("g.slice")
-                          .data(pie)
-                          .enter()
-                          .append("g")
-                          .attr("class", "slice");
 
-            arcs.append("path")
-                .attr("fill", function(d,i){return color(i);})
-                .attr("d", arc);
+
+
+
+            // var color = d3.scaleOrdinal(d3.schemeCategory10);     
             
-            arcs.append("text")
-                .attr("transform", function(d){
-                    d.innerRadius = 0;
-                    d.outerRadius = 100;
-                    return "translate(" + arc.centroid(d) + ")";
+            // var vis = svg8.data([arrayISBachelors]);
+            
+            // var arc = d3.arc()
+            //               .outerRadius(100);
+            // var pie = d3.pie(arrayISBachelors)
+            //             .value(function(d){return d.percent;});
+            
+            // var arcs = vis.selectAll("g.slice")
+            //               .data(pie)
+            //               .enter()
+            //               .append("g")
+            //               .attr("class", "slice");
+
+            // arcs.append("path")
+            //     .attr("fill", function(d,i){return color(i);})
+            //     .attr("d", arc);
+            
+            // arcs.append("text")
+            //     .attr("transform", function(d){
+            //         d.innerRadius = 0;
+            //         d.outerRadius = 100;
+            //         return "translate(" + arc.centroid(d) + ")";
+            //     })
+            //     .attr("text-anchor", "middle")
+            //     .text(function(d,i) { return arrayISBachelors[i].location});
+
+            console.log(arrayISBachelors);
+            
+            var g = svg8.append("g");
+
+            var color = d3.scaleOrdinal(d3.schemeCategory10);  
+
+            var pie = d3.pie();
+
+            var arc = d3.arc()
+                        .innerRadius(50)
+                        .outerRadius(Math.min(width,height)/2);
+            
+            var arcs = g.selectAll("arc")
+                        .data(pie(arrayISBachelors))
+                        .enter()
+                        .append("g")
+                        .attr("class", "arc");
+            
+            arcs.append("path")
+                .attr("fill", function(d,i){
+                    return color(i);
                 })
-                .attr("text-anchor", "middle")
-                .text(function(d,i) { return arrayISBachelors[i].location});
+                .attr("d", arc);
 
         });
     </script>
