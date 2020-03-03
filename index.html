@@ -121,7 +121,10 @@
             .attr("height", String(heightLarge));
 
         // chart 6
-        chartDiv6.append("h4").text("CS vs IS Bachelors Enrollment");
+        chartDiv6
+            .append("h4")
+            .attr("class", "chartTitle")
+            .text("CS vs IS Bachelors Enrollment");
 
         const svg6 = chartDiv6
             .append("svg")
@@ -130,7 +133,10 @@
             .attr("height", String(height));
 
         // chart 7
-        chartDiv7.append("h4").text("CS vs IS Masters Enrollment");
+        chartDiv7
+            .append("h4")
+            .attr("class", "chartTitle")
+            .text("CS vs IS Masters Enrollment");
 
         const svg7 = chartDiv7
             .append("svg")
@@ -325,7 +331,7 @@
 
             const mastersEnrollmentScale = d3
                 .scaleLinear()
-                .domain([0, 200])
+                .domain([0, 250])
                 .range([chartHeight, 0]);
 
             // Gridlines
@@ -966,15 +972,6 @@
                     .attr("cy", bachelorsEnrollmentScale(d["total"]));
             });
 
-            /*
-            chart6.selectAll("circle")
-                .data(dataISBachelors)
-                .join("circle")
-                .attr("r", 3)
-                .attr("fill", colorISBachelors)
-                .attr("cx", d => dateScale(new Date(d["classyear"], 0, 1)) )
-                .attr("cy", d => bachelorsEnrollmentScale(d["total"]) );
-*/
             chart6
                 .append("path")
                 .datum(dataCSBachelors)
@@ -992,16 +989,6 @@
                     .attr("cx", dateScale(new Date(d["classyear"], 0, 1)))
                     .attr("cy", bachelorsEnrollmentScale(d["total"]));
             });
-
-            /*
-            chart6.selectAll("circle")
-                .data(dataCSBachelors)
-                .join("circle")
-                .attr("r", 3)
-                .attr("fill", colorCSBachelors)
-                .attr("cx", d => dateScale(new Date(d["classyear"], 0, 1)) )
-                .attr("cy", d => bachelorsEnrollmentScale(d["total"]) );
-*/
 
             // add legend for chart 6
             let legend6 = svg6
