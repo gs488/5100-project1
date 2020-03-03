@@ -19,6 +19,10 @@
     <div class="chartDiv salaryChart" id="chartDiv5"></div>
     <div class="chartDiv enrollmentChart" id="chartDiv6"></div>
     <div class="chartDiv enrollmentChart" id="chartDiv7"></div>
+    <div class="chartDiv locationChart" id="chartDiv8"></div>
+    <div class="chartDiv locationChart" id="chartDiv9"></div>
+    <div class="chartDiv locationChart" id="chartDiv10"></div>
+    <div class="chartDiv locationChart" id="chartDiv11"></div>
 
     <script>
         // svg setup
@@ -57,6 +61,11 @@
         const chartDiv5 = d3.select("#chartDiv5");
         const chartDiv6 = d3.select("#chartDiv6");
         const chartDiv7 = d3.select("#chartDiv7");
+        const chartDiv8 = d3.select("#chartDiv8");
+        const chartDiv9 = d3.select("#chartDiv9");
+        const chartDiv10 = d3.select("#chartDiv10");
+        const chartDiv11 = d3.select("#chartDiv11");
+
 
         // chart 1
         chartDiv1
@@ -136,6 +145,42 @@
         const svg7 = chartDiv7
             .append("svg")
             .attr("id", "svg7")
+            .attr("width", String(width))
+            .attr("height", String(height));
+
+        // chart 8
+        chartDiv8.append("h4").text("Location Distribution IS Bachelors");
+
+        const svg8 = chartDiv8
+            .append("svg")
+            .attr("id", "svg8")
+            .attr("width", String(width))
+            .attr("height", String(height));
+        
+        // chart 9
+        chartDiv9.append("h4").text("Location Distribution CS Bachelors");
+
+        const svg9 = chartDiv9
+            .append("svg")
+            .attr("id", "svg9")
+            .attr("width", String(width))
+            .attr("height", String(height));
+
+        // chart 10
+        chartDiv10.append("h4").text("Location Distribution IS Masters");
+
+        const svg10 = chartDiv10
+            .append("svg")
+            .attr("id", "svg10")
+            .attr("width", String(width))
+            .attr("height", String(height));
+
+        // chart 11
+        chartDiv11.append("h4").text("Location Distribution CS Masters");
+
+        const svg11 = chartDiv11
+            .append("svg")
+            .attr("id", "svg11")
             .attr("width", String(width))
             .attr("height", String(height));
 
@@ -1121,6 +1166,30 @@
                 .attr("y", 0)
                 .style("fill", colorCSMasters)
                 .text("CS Masters");
+
+            // ------ Chart 8, Location Donut Chart ----
+            var radius = Math.min(width, height) / 2;
+            
+            var pie = d3.pie()
+                        .value(function(d){return d.value;});
+            var data_ready = pie(d3.entries(data));
+
+            svg8.data(data_ready)
+                .enter()
+                .append("path")
+                .attr("d", de.arc()
+                    .innerRadius(100)
+                    .outerRadius(radius)
+                    )
+                .attr("fill", function(d){return(color(d.data.key))})
+                .append("title")
+                .text(d => `${d.data.name}: ${d.data.value,toLocaleString()}`)
+                .attr("stroke", "light grey")
+                .style("stroke-width", "2px");
+
+
+            
+
 
 
         });
