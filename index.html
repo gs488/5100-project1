@@ -25,7 +25,6 @@
     <div class="chartDiv salaryChart" id="chartDiv3"></div>
     <div class="chartDiv salaryChart" id="chartDiv4"></div>
 
-
     <script>
         // svg setup
         const width = window.innerWidth * 0.49;
@@ -155,7 +154,10 @@
             .attr("height", String(height));
 
         // chart 8
-        chartDiv8.append("h4").text("Location Distribution IS Bachelors");
+        chartDiv8
+            .append("h4")
+            .text("Location Distribution IS Bachelors")
+            .attr("class", "chartTitle");
 
         const svg8 = chartDiv8
             .append("svg")
@@ -164,7 +166,10 @@
             .attr("height", String(height));
 
         // chart 9
-        chartDiv9.append("h4").text("Location Distribution CS Bachelors");
+        chartDiv9
+            .append("h4")
+            .text("Location Distribution CS Bachelors")
+            .attr("class", "chartTitle");
 
         const svg9 = chartDiv9
             .append("svg")
@@ -173,7 +178,10 @@
             .attr("height", String(height));
 
         // chart 10
-        chartDiv10.append("h4").text("Location Distribution IS Masters");
+        chartDiv10
+            .append("h4")
+            .text("Location Distribution IS Masters")
+            .attr("class", "chartTitle");
 
         const svg10 = chartDiv10
             .append("svg")
@@ -182,7 +190,10 @@
             .attr("height", String(height));
 
         // chart 11
-        chartDiv11.append("h4").text("Location Distribution CS Masters");
+        chartDiv11
+            .append("h4")
+            .text("Location Distribution CS Masters")
+            .attr("class", "chartTitle");
 
         const svg11 = chartDiv11
             .append("svg")
