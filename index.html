@@ -999,6 +999,37 @@
                 .attr("cy", d => bachelorsEnrollmentScale(d["total"]) );
 */
 
+            // add legend for chart 6
+            let legend6 = svg6
+                .append("g")
+                .attr("id", "legend6")
+                .attr("class", "legend")
+                .attr(
+                    "transform",
+                    "translate(" + legendXLarge + "," + legendYLarge + ")"
+                );
+
+            legend6
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", 0)
+                .attr("y", 0)
+                .style("fill", colorISBachelors)
+                .text("IS Bachelors");
+
+            legend6
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", legendPadding * 2)
+                .attr("y", 0)
+                .style("fill", colorCSBachelors)
+                .text("CS Bachelors");
+
+
             // ------ Chart 7, CS vs IS masters enrollment line graph ----
 
             svg7.append("g")
@@ -1059,6 +1090,38 @@
                                 .attr("cx", dateScale(d["classyear"]) )
                                 .attr("cy", mastersEnrollmentScale(d["total"]) );
             });
+
+            // add legend for chart 7
+            let legend7 = svg7
+                .append("g")
+                .attr("id", "legend7")
+                .attr("class", "legend")
+                .attr(
+                    "transform",
+                    "translate(" + legendXLarge + "," + legendYLarge + ")"
+                );
+
+            legend7
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", legendPadding)
+                .attr("y", 0)
+                .style("fill", colorISMasters)
+                .text("IS Masters");
+
+
+            legend7
+                .append("text")
+                .attr("text-anchor", "start")
+                .attr("alignment-baseline", "hanging")
+                .attr("font-size", "12px")
+                .attr("x", legendPadding * 3)
+                .attr("y", 0)
+                .style("fill", colorCSMasters)
+                .text("CS Masters");
+
 
         });
     </script>
