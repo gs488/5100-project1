@@ -323,67 +323,6 @@
                 { location: "Other", percent: percentCSMastersOther }
             ];
 
-            // console.log(arrayISBachelors);
-            // console.log(arrayCSMasters);
-            // console.log(arrayISBachelors);
-            // console.log(arrayCSMasters);
-
-            // just console.log() to see the percentages
-            // console.log(percentISBachelorsNYC);
-            // console.log(percentISBachelorsSF);
-            // console.log(percentISBachelorsOther);
-
-            // console.log(percentCSBachelorsNYC);
-            // console.log(percentCSBachelorsSF);
-            // console.log(percentCSBachelorsOther);
-
-            // console.log(percentISMastersNYC);
-            // console.log(percentISMastersSF);
-            // console.log(percentISMastersOther);
-
-            // console.log(percentCSMastersNYC);
-            // console.log(percentCSMastersSF);
-            // console.log(percentCSMastersOther);
-
-            // max of salary of different groups
-            const salaryMax = d3.max(data, d => {
-                return Math.max(d["salary"]);
-            });
-
-            const salaryMaxIS = d3.max(dataIS, d => {
-                return Math.max(d["salary"]);
-            });
-
-            const salaryMaxCS = d3.max(dataCS, d => {
-                return Math.max(d["salary"]);
-            });
-
-            const salaryMaxBachelors = d3.max(dataBachelors, d => {
-                return Math.max(d["salary"]);
-            });
-
-            const salaryMaxMasters = d3.max(dataMasters, d => {
-                return Math.max(d["salary"]);
-            });
-
-            const salaryMaxISBachelors = d3.max(dataISBachelors, d => {
-                return Math.max(d["salary"]);
-            });
-
-            const salaryMaxISMasters = d3.max(dataISMasters, d => {
-                return Math.max(d["salary"]);
-            });
-
-            const salaryMaxCSBachelors = d3.max(dataCSBachelors, d => {
-                return Math.max(d["salary"]);
-            });
-
-            const salaryMaxCSMasters = d3.max(dataCSMasters, d => {
-                return Math.max(d["salary"]);
-            });
-
-            // const dateExtent = d3.extent(data, d => d["classyear"]);
-
             // scales
             const dateScale = d3
                 .scaleTime()
@@ -1280,7 +1219,6 @@
                 .attr("font-weight", "bold")
                 .attr("font-size", "14px")
                 .attr("transform", d => {
-                    console.log(arc1.centroid(d));
                     let x = arc1.centroid(d)[0];
                     let y = arc1.centroid(d)[1] + 20;
                     return "translate(" + x + ", " + y + ")";
@@ -1332,7 +1270,6 @@
                 .attr("font-weight", "bold")
                 .attr("font-size", "14px")
                 .attr("transform", d => {
-                    console.log(arc2.centroid(d));
                     let x = arc2.centroid(d)[0];
                     let y = arc2.centroid(d)[1] + 20;
                     return "translate(" + x + ", " + y + ")";
@@ -1384,7 +1321,6 @@
                 .attr("font-weight", "bold")
                 .attr("font-size", "14px")
                 .attr("transform", d => {
-                    console.log(arc3.centroid(d));
                     let x = arc3.centroid(d)[0];
                     let y = arc3.centroid(d)[1] + 20;
                     return "translate(" + x + ", " + y + ")";
@@ -1436,7 +1372,6 @@
                 .attr("font-weight", "bold")
                 .attr("font-size", "14px")
                 .attr("transform", d => {
-                    console.log(arc4.centroid(d));
                     let x = arc4.centroid(d)[0];
                     let y = arc4.centroid(d)[1] + 20;
                     return "translate(" + x + ", " + y + ")";
